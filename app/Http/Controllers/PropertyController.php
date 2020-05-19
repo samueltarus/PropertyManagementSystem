@@ -24,7 +24,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        return view ('property.create');
     }
 
     /**
@@ -35,7 +35,34 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        
+        $request ->validate([
+            'propertyName'=>'required',
+            'propertyType'=>'required',
+            'propertyDescription'=>'required',
+            'numberOfUnits'=>'required',
+            'address'=>'required',
+            'phonenumber'=>'required',
+            'propertymanager'=>'required',
+            
+
+
+        ]);
+        $property= new  Property();
+
+        $property->propertyName= $request['propertyName'];
+        $property->propertyType= $request['propertyType'];
+        $property->propertyDescription= $request['propertyDescription'];
+        $property->numberOfUnits= $request['numberOfUnits'];
+        $property->address= $request['address'];
+        $property->phonenumber= $request['phonenumber'];
+        $property->propertymanager= $request['propertymanager'];
+        
+    
+    $property->save();
+    return redirect()->to('/property')-> with("Successfully created landlord");
+ 
     }
 
     /**

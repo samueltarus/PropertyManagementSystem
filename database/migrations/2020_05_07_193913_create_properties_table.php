@@ -14,8 +14,19 @@ class CreatePropertiesTable extends Migration
     public function up()
     {
         Schema::create('properties', function (Blueprint $table) {
+
+           
             $table->id();
-            $table->timestamps();
+            $table->string ('propertyName');
+            $table->string ('propertyType');
+            $table->string ('propertyDescription');
+            $table->string ('numberOfUnits');
+            $table->string ('address');
+            $table->string ('phonenumber');
+            $table->string ('propertymanager');
+            $table->string ('propertyMonthlyRev');
+            $table->string ('propertyAnnualized');
+             $table->timestamps();
         });
     }
 

@@ -42,9 +42,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //manage Properties
-        Route::get('/property','PropertyController@index') ->name('dashboard');
-        Route::get('/property/billing','BillingController@index');
-        Route::get('/property/manageproperties','ManagePropertiesController@index');
+        Route::resource('/property','PropertyController');
+        
 
 
 
