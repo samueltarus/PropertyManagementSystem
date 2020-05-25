@@ -11,7 +11,8 @@
               <div class="card-body">
               <form method="POST" action="{{action('PropertyController@store')}}">
                       @csrf
-          
+
+
                       <div class="form-group row">
                           <label for="propertyName" class="col-md-4 col-form-label text-md-right">{{ __('Property Name') }}</label>
 
@@ -38,11 +39,11 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="propertyDescription" class="col-md-4 col-form-label text-md-right">{{ __('Property Description') }}</label>
+                      <div class="form-group row">
+                        <label for="propertyDescription" class="col-md-4 col-form-label text-md-right">{{ __('Property Description ') }}</label>
 
                         <div class="col-md-6">
-                            <input id="propertyDescription" type="text" class="form-control @error('propertyDescription') is-invalid @enderror" name="propertyDescription" value="{{ old('propertyDescription') }}" required autocomplete="propertyName" autofocus>
+                            <input id="propertyDescription" type="text" class="form-control @error('propertyDescription') is-invalid @enderror" name="propertyDescription" value="{{ old('propertyDescription') }}" required autocomplete="propertyDescription" autofocus>
 
                             @error('propertyDescription')
                                 <span class="invalid-feedback" role="alert">
@@ -52,7 +53,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="numberOfUnits" class="col-md-4 col-form-label text-md-right">{{ __('Number Of Units') }}</label>
+                        <label for="numberOfUnits" class="col-md-4 col-form-label text-md-right">{{ __('Number of Units') }}</label>
 
                         <div class="col-md-6">
                             <input id="numberOfUnits" type="text" class="form-control @error('numberOfUnits') is-invalid @enderror" name="numberOfUnits" value="{{ old('numberOfUnits') }}" required autocomplete="numberOfUnits" autofocus>
@@ -64,6 +65,7 @@
                             @enderror
                         </div>
                     </div>
+                   
                     <div class="form-group row">
                         <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
@@ -77,34 +79,34 @@
                             @enderror
                         </div>
                     </div>
-                      <div class="form-group row">
-                        <label for="phonenumber" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+                    <div class="form-group row">
+                        <label for="phoneNumber" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
                         <div class="col-md-6">
-                            <input id="phonenumber" type="text" class="form-control @error('phonenumber') is-invalid @enderror" name="phonenumber" value="{{ old('phonenumber') }}" required autocomplete="phonenumber" autofocus>
+                            <input id="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" value="{{ old('phoneNumber') }}" required autocomplete="phoneNumber" autofocus>
 
-                            @error('phonenumber')
+                            @error('phoneNumber')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                     </div>
-                   
+
                       <div class="form-group row">
-                          <label for="propertymanager" class="col-md-4 col-form-label text-md-right">{{ __('Property Manager') }}</label>
+                          <label for="propertyManager" class="col-md-4 col-form-label text-md-right">{{ __('Property Manager') }}</label>
 
                           <div class="col-md-6">
-                              <input id="propertymanager" type="text" class="form-control @error('propertymanager') is-invalid @enderror" name="propertymanager" value="{{ old('propertymanager') }}" required autocomplete="propertymanager" autofocus>
+                              <input id="propertyManager" type="text" class="form-control @error('propertyManager') is-invalid @enderror" name="propertyManager" value="{{ old('propertyManager') }}" required autocomplete="propertyManager" autofocus>
 
-                              @error('propertymanager')
+                              @error('propertyManager')
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
                                   </span>
                               @enderror
                           </div>
                       </div>
-                   
+
                       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

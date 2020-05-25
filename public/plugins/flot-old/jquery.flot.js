@@ -562,7 +562,7 @@ Licensed under the MIT license.
                     bars: {
                         show: false,
                         lineWidth: 2, // in pixels
-                        barWidth: 1, // in units of the x axis
+                        barWidth: 1, // in unitsController of the x axis
                         fill: true,
                         fillColor: null,
                         align: "left", // "left", "right", or "center"
@@ -2834,7 +2834,7 @@ Licensed under the MIT license.
                             continue;
 
                         // We have to calculate distances in pixels, not in
-                        // data units, because the scales of the axes may be different
+                        // data unitsController, because the scales of the axes may be different
                         var dx = Math.abs(axisx.p2c(x) - mouseX),
                             dy = Math.abs(axisy.p2c(y) - mouseY),
                             dist = dx * dx + dy * dy; // we save the sqrt

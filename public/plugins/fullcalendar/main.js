@@ -3946,11 +3946,11 @@ Docs & License: https://fullcalendar.io/
         renderEventDragSegs(state: EventSegUiInteractionState) {
           if (state) {
             let { isEvent, segs, sourceSeg } = state
-      
+
             if (this.eventRenderer) {
               this.eventRenderer.hideByHash(state.affectedInstances)
             }
-      
+
             // if the user is dragging something that is considered an event with real event data,
             // and this component likes to do drag mirrors OR the component where the seg came from
             // likes to do drag mirrors, then render a drag mirror.
@@ -3959,7 +3959,7 @@ Docs & License: https://fullcalendar.io/
                 this.mirrorRenderer.renderSegs(segs, { isDragging: true, sourceSeg })
               }
             }
-      
+
             // if it would be impossible to render a drag mirror OR this component likes to render
             // highlights, then render a highlight.
             if (!isEvent || this.doesDragHighlight) {
@@ -4406,7 +4406,7 @@ Docs & License: https://fullcalendar.io/
         var endMarker = framingRange.end;
         var instanceStarts = [];
         while (dayMarker < endMarker) {
-            var instanceStart 
+            var instanceStart
             // if everyday, or this particular day-of-week
             = void 0;
             // if everyday, or this particular day-of-week
@@ -5414,7 +5414,7 @@ Docs & License: https://fullcalendar.io/
                 dateIncrementInput = this.options.dateIncrement;
                 if (dateIncrementInput) {
                     dateIncrementDuration = createDuration(dateIncrementInput);
-                    // use the smaller of the two units
+                    // use the smaller of the two unitsController
                     if (asRoughMs(dateIncrementDuration) < asRoughMs(duration)) {
                         alignment = greatestDurationDenominator(dateIncrementDuration, !getWeeksFromInput(dateIncrementInput)).unit;
                     }
@@ -6352,7 +6352,7 @@ Docs & License: https://fullcalendar.io/
         if (/^(year|month)$/.test(dateProfile.currentRangeUnit)) {
             range = dateProfile.currentRange;
         }
-        else { // for day units or smaller, use the actual day range
+        else { // for day unitsController or smaller, use the actual day range
             range = dateProfile.activeRange;
         }
         return this.dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || computeTitleFormat(dateProfile), viewOptions.titleRangeSeparator), { isEndExclusive: dateProfile.isRangeAllDay });

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Units;
 use Illuminate\Http\Request;
 
-class units extends Controller
+class UnitsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,18 +14,20 @@ class units extends Controller
      */
     public function index()
     {
-       /* $units =  \App\Units::orderBy('id')->paginate(10);*/
-        return view('property.units');
-    }
 
+//        $units =  Units::orderBy('id')->paginate(10);
+        //
+
+    }
     /**
+
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('property.newUnit');
+        return view('property.manageUnits.newUnit');
     }
 
     /**

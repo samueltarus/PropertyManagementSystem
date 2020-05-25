@@ -14,7 +14,7 @@ class BillingtenantController extends Controller
      */
     public function index()
     {
-        return view ('tenant.billing.index');
+        return view ('tenantBilling.index');
     }
 
     /**

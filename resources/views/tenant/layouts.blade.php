@@ -180,20 +180,20 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-          <a href="{{ action("ManageTenantController@index") }}" class="nav-link active">
+          <a href="{{ action('TenantController@index') }}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Manage Tenant Information
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
-            
+            </a> 
+                       
           </li>
           <li class="nav-item">
-            <a href="{{ action("BillingTenantController@index") }}" class="nav-link">
+          <a href="{{ route ('tenantBilling.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Billing
+                 Tenant Billing
                 <span class="right badge badge-danger"></span>
               </p>
             </a>

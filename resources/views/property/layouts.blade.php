@@ -180,17 +180,17 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-          <a href="{{ action("PropertyController@index") }}" class="nav-link active">
+          <a href="{{ action("PropertyController@index")}}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Manage Properties
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            
+
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ action('PropertyController@create')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Billing
@@ -207,9 +207,9 @@
                 <span class="badge badge-info right"></span>
               </p>
             </a>
-            
+
           </li> --}}
-         
+
           <li class="nav-header">LABELS</li>
           <li class="nav-item">
             <a href="{{ route('login') }}" class="nav-link">
@@ -217,7 +217,7 @@
               <p class="text">Log Out</p>
             </a>
           </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

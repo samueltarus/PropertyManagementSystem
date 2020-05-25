@@ -13,7 +13,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#" class="btn btn-secondary">Home</a></li>
 
-           
+
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -70,7 +70,7 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-       
+
       </div>
       <!-- /.row -->
       <!-- Main row -->
@@ -78,7 +78,7 @@
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
-         
+
           <!-- DIRECT CHAT -->
           <div class="card direct-chat direct-chat-primary">
             <div class="card-header">
@@ -564,6 +564,6 @@
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
-       
+
 </div>
 @endsection

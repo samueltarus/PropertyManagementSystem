@@ -1771,9 +1771,9 @@ function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
   var splitRegex = /\s*,\s*|\s+/;
   var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
 
-  // Convert the values with units to absolute pixels to allow our computations
+  // Convert the values with unitsController to absolute pixels to allow our computations
   ops = ops.map(function (op, index) {
-    // Most of the units rely on the orientation of the popper
+    // Most of the unitsController rely on the orientation of the popper
     var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
     var mergeWithPrevious = false;
     return op
@@ -2062,7 +2062,7 @@ var modifiers = {
   /**
    * The `offset` modifier can shift your popper on both its axis.
    *
-   * It accepts the following units:
+   * It accepts the following unitsController:
    * - `px` or unit-less, interpreted as pixels
    * - `%` or `%r`, percentage relative to the length of the reference element
    * - `%p`, percentage relative to the length of the popper element
@@ -2077,7 +2077,7 @@ var modifiers = {
    * as `String` divided by a comma or one (or more) white spaces.<br />
    * The latter is a deprecated method because it leads to confusion and will be
    * removed in v2.<br />
-   * Additionally, it accepts additions and subtractions between different units.
+   * Additionally, it accepts additions and subtractions between different unitsController.
    * Note that multiplications and divisions aren't supported.
    *
    * Valid examples are:

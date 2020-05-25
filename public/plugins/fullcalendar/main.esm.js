@@ -5408,7 +5408,7 @@ var DateProfileGenerator = /** @class */ (function () {
             dateIncrementInput = this.options.dateIncrement;
             if (dateIncrementInput) {
                 dateIncrementDuration = createDuration(dateIncrementInput);
-                // use the smaller of the two units
+                // use the smaller of the two unitsController
                 if (asRoughMs(dateIncrementDuration) < asRoughMs(duration)) {
                     alignment = greatestDurationDenominator(dateIncrementDuration, !getWeeksFromInput(dateIncrementInput)).unit;
                 }
@@ -6346,7 +6346,7 @@ function computeTitle(dateProfile, viewOptions) {
     if (/^(year|month)$/.test(dateProfile.currentRangeUnit)) {
         range = dateProfile.currentRange;
     }
-    else { // for day units or smaller, use the actual day range
+    else { // for day unitsController or smaller, use the actual day range
         range = dateProfile.activeRange;
     }
     return this.dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || computeTitleFormat(dateProfile), viewOptions.titleRangeSeparator), { isEndExclusive: dateProfile.isRangeAllDay });

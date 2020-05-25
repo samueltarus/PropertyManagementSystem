@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ManageProperties;
+use App\Units;
 use Illuminate\Http\Request;
 
 class ManagePropertiesController extends Controller
@@ -14,7 +15,11 @@ class ManagePropertiesController extends Controller
      */
     public function index()
     {
-        return view('property.manageproperties.index');
+                
+        
+        $Units = Units::orderBy('id')->paginate(10);
+
+        return view('manageUnits.index')->with('Units',$Units);
     }
 
     /**
@@ -24,7 +29,7 @@ class ManagePropertiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('manageUnits.create');
     }
 
     /**
@@ -35,7 +40,28 @@ class ManagePropertiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request ->validate([
+            'propertyName'=>'required',
+            'unitNumber'=>'required',
+            'bedrooms'=>'required',
+            'bathrooms'=>'required',
+            'propertyManager'=>'required',
+
+
+
+        ]);
+        $Units = new  Units();
+
+        $Units->propertyName= $request['propertyName'];
+        $Units->unitNumber= $request['unitNumber'];
+        $Units->bedrooms= $request['bedrooms'];
+        $Units->bathrooms= $request['bathrooms'];
+        $Units->propertyManager= $request['propertyManager'];
+
+
+        $Units->save();
+    return redirect()->to('/manageUnits')-> with('message','Successfully created Property');
     }
 
     /**
@@ -57,7 +83,9 @@ class ManagePropertiesController extends Controller
      */
     public function edit(ManageProperties $manageProperties)
     {
-        //
+        $Units =Units::find($id);
+
+        return view('manageUnits.edit',compact('manageUnits','id'));
     }
 
     /**
@@ -67,9 +95,29 @@ class ManagePropertiesController extends Controller
      * @param  \App\ManageProperties  $manageProperties
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ManageProperties $manageProperties)
+    public function update(Request $request,  $id)
     {
-        //
+         
+        $request ->validate([
+            'propertyName'=>'required',
+            'unitNumber'=>'required',
+            'bedrooms'=>'required',
+            'bathrooms'=>'required',
+            'propertyManager'=>'required',
+
+
+
+        ]);
+        $Units = Units::find($id);
+        $Units->propertyName= $request['propertyName'];
+        $Units->unitNumber= $request['unitNumber'];
+        $Units->bedrooms= $request['bedrooms'];
+        $Units->bathrooms= $request['bathrooms'];
+        $Units->propertyManager= $request['propertyManager'];
+
+
+        $Units->save();
+    return redirect()->to('/manageUnits')-> with('message','Successfully created Property');
     }
 
     /**

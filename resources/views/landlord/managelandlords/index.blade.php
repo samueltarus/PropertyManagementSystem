@@ -13,7 +13,7 @@
                   <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{ action("ManageLandlordController@create")}}" class="btn btn-secondary">Add New Landlord</a></li>
                   {{-- <li class="breadcrumb-item"><a href="#" class="btn btn-secondary">Show Landlord Detail</a></li> --}}
-                    
+
                   </ol>
                 </div>
               </div>
@@ -28,7 +28,7 @@
                   <i class="fas fa-minus"></i></button>
               </div>
             </div>
-            
+
         <div class="card-body p-0">
             <table class="table">
               <thead>
@@ -42,9 +42,10 @@
                 </tr>
               </thead>
               <tbody>
-               
-            @foreach ($manage_landlords  as $ManageLandlord )
-                     <tr>
+
+                 @foreach ($manage_landlords  as $ManageLandlord )
+
+                   <tr>
                 <td>{{$ManageLandlord ->firstname}}</td>
                   <td>{{$ManageLandlord->lastname}}</td>
                   <td>{{$ManageLandlord->no_apartments}}</td>
@@ -57,9 +58,9 @@
                     </div>
                   </td>
                 <tr>
-                  
+
                   @endforeach
-                  
+
               </tbody>
             </table>
           </div>

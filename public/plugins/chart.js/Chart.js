@@ -1528,7 +1528,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -10923,7 +10923,7 @@ function DateAdapter(options) {
 
 helpers$1.extend(DateAdapter.prototype, /** @lends DateAdapter */ {
 	/**
-	 * Returns a map of time formats for the supported formatting units defined
+	 * Returns a map of time formats for the supported formatting unitsController defined
 	 * in Unit as well as 'datetime' representing a detailed date/time string.
 	 * @returns {{string: string}}
 	 */

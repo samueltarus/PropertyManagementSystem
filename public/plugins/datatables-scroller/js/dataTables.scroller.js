@@ -533,7 +533,7 @@ $.extend( Scroller.prototype, {
 
 		// Add a state saving parameter to the DT state saving so we can restore the exact
 		// position of the scrolling. Slightly surprisingly the scroll position isn't actually
-		// stored, but rather tha base units which are needed to calculate it. This allows for
+		// stored, but rather tha base unitsController which are needed to calculate it. This allows for
 		// virtual scrolling as well.
 		var initialStateSave = true;
 		var loadedState = dt.state.loaded();
@@ -899,7 +899,7 @@ $.extend( Scroller.prototype, {
 	/**
 	 * Parse CSS height property string as number
 	 *
-	 * An attempt is made to parse the string as a number. Currently supported units are 'px',
+	 * An attempt is made to parse the string as a number. Currently supported unitsController are 'px',
 	 * 'vh', and 'rem'. 'em' is partially supported; it works as long as the parent element's
 	 * font size matches the body element. Zero is returned for unrecognized strings.
 	 *  @param {string} cssHeight CSS height property string

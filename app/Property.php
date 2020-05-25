@@ -9,14 +9,14 @@ class Property extends Model
     //use Notifiable;
     protected $table = 'properties';
 
-    /**
+    /**web
      * The attributes that are mass assignable.
      *
      * @var array
      */
 
     protected $fillable = [
-        'propertyName','propertyType','propertyDescription', 'numberOfUnits','address','phonenumber','propertymanager'
+        'propertyName','propertyType','propertyDescription', 'numberOfUnits','address','phoneNumber','propertyManager','propertyMonthlyRev','propertyAnnualized'
     ];
 
     /**
@@ -24,7 +24,7 @@ class Property extends Model
      *
      * @var array
      */
-    
+
 
     /**
      * The attributes that should be cast to native types.

@@ -187,7 +187,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            
+
           </li>
           <li class="nav-item">
             <a href="{{ action("LandlordpaymentsController@index") }}" class="nav-link">
@@ -207,18 +207,8 @@
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Actions On Landlords
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-            
-          </li> --}}
-         
+
+
           <li class="nav-header">LABELS</li>
           <li class="nav-item">
             <a href="{{ route('login') }}" class="nav-link">
@@ -226,7 +216,7 @@
               <p class="text">Log Out</p>
             </a>
           </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

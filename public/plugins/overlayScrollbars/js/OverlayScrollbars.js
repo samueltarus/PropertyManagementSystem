@@ -5871,7 +5871,7 @@
                                     operator = possibleOperator;
                             }
 
-                            //calculate units and shortcuts
+                            //calculate unitsController and shortcuts
                             rawScroll = operator ? rawScroll.substr(2) : rawScroll;
                             rawScroll = rawScroll
                             [strReplace](/min/g, 0) //'min' = 0%

@@ -15,6 +15,11 @@ class CreateManagePropertiesTable extends Migration
     {
         Schema::create('manage_properties', function (Blueprint $table) {
             $table->id();
+            $table->string ('propertyDescription');
+            $table->string ('numberOfUnits');
+            $table->string ('address');
+            $table->string ('phoneNumber');
+            $table->string ('propertyManager');
             $table->timestamps();
         });
     }
