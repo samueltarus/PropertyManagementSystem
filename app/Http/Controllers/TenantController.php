@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\tenant;
 use Illuminate\Http\Request;
 
@@ -27,7 +27,9 @@ class TenantController extends Controller
      */
     public function create()
     {
-        return view('tenant.create');
+       
+        $occupation =DB::table('occupation')->select('id','occupation')->get();
+        return view('/tenant.create',compact('occupation'));
     }
 
     /**
@@ -39,14 +41,15 @@ class TenantController extends Controller
     public function store(Request $request)
     {
         $request ->validate([
+           
             'firstname'=>'required',
             'lastname'=>'required',
-            'propertyName'=>'required',
-            'unitNumber'=>'required',
+            'username'=>'required',
+            'passport'=>'required',
+            'email'=>'required',
+            'address'=>'required',
             'phoneNumber'=>'required',
-            'status'=>'required',
-            'rent'=>'required',
-            'services'=>'required',
+            'occupation'=>'required',
 
 
 
@@ -55,16 +58,17 @@ class TenantController extends Controller
 
         $tenant->firstname= $request['firstname'];
         $tenant->lastname= $request['lastname'];
-        $tenant->propertyName= $request['propertyName'];
-        $tenant->unitNumber= $request['unitNumber'];
+        $tenant->username= $request['username'];
+        $tenant->passport= $request['passport'];
+        $tenant->email= $request['email'];
+        $tenant->address= $request['address'];
         $tenant->phoneNumber= $request['phoneNumber'];
-        $tenant->status= $request['status'];
-        $tenant->rent= $request['rent'];
-        $tenant->services= $request['services'];
-
-
+        $tenant->occupation= $request['occupation'];
+        
+        
+            
         $tenant->save();
-    return redirect()->to('/tenant')-> with('message','Successfully created  Tenant');
+    return redirect()->to('tenant.index')-> with('message','Successfully created  Tenant');
         
     }
 

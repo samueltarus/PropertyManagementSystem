@@ -19,17 +19,16 @@ class CreatePropertiesTable extends Migration
             $table->id();
             
             $table->string ('propertyName');
-            $table->string ('propertyType');
+            $table->string ('apartmentsType');
+            $table->string('townLocation');
+            $table->string('location');
             $table->string ('propertyDescription');
-            $table->string ('numberOfUnits');
-            $table->string ('address');
-            $table->string ('phoneNumber');
-            $table->string ('propertyManager');
-            $table->string ('propertyMonthlyRev');
-            $table->string ('propertyAnnualized');
+            $table->string ('username');
+            $table->integer('managementFee');
+           
              $table->timestamps();
              
-        });
+        
         });
     }
 

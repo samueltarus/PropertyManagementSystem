@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\ManageProperties;
-use App\Units;
+use App\Houses;
 use Illuminate\Http\Request;
 
 class ManagePropertiesController extends Controller
@@ -15,11 +15,18 @@ class ManagePropertiesController extends Controller
      */
     public function index()
     {
-                
+        //$propertyName =DB::table('properties')->select('properties.propertyName')->get();
+        // $Units =DB::table('units')
+             
+        // ->select('units.propertyName','units.unitNumber','units.bedrooms','units.bathrooms', 'propertyManager')
+        // ->get();
+       
+        // dd($propertyName);
         
-        $Units = Units::orderBy('id')->paginate(10);
 
-        return view('manageUnits.index')->with('Units',$Units);
+        //$Units = Units::orderBy('id')->paginate(10);
+
+        return view('property.addhouses.index');
     }
 
     /**
@@ -29,7 +36,15 @@ class ManagePropertiesController extends Controller
      */
     public function create()
     {
-        return view('manageUnits.create');
+
+       
+
+        //$propertyManager =DB::table('properties')->select('properties.propertyManager')->get();
+        $propertyName =DB::table('properties')->select('id','propertyName')->get();
+        $houseType =DB::table('house_type')->select('id','houseType')->get();
+        
+        return view('property.addhouses.create',compact('propertyName','houseType'));
+
     }
 
     /**
@@ -41,27 +56,28 @@ class ManagePropertiesController extends Controller
     public function store(Request $request)
     {
         
+        
+
         $request ->validate([
             'propertyName'=>'required',
-            'unitNumber'=>'required',
-            'bedrooms'=>'required',
-            'bathrooms'=>'required',
-            'propertyManager'=>'required',
+            'houseNumber'=>'required',
+            'houseType'=>'required',
+            'monthlyRent'=>'required',
 
 
 
         ]);
-        $Units = new  Units();
-
-        $Units->propertyName= $request['propertyName'];
-        $Units->unitNumber= $request['unitNumber'];
-        $Units->bedrooms= $request['bedrooms'];
-        $Units->bathrooms= $request['bathrooms'];
-        $Units->propertyManager= $request['propertyManager'];
 
 
-        $Units->save();
-    return redirect()->to('/manageUnits')-> with('message','Successfully created Property');
+        $Houses = new  Houses();
+      
+        $Houses->propertyName= $request['propertyName'];
+        $Houses->houseNumber= $request['houseNumber'];
+        $Houses->houseType= $request['houseType'];
+        $Houses->monthlyRent= $request['monthlyRent'];
+   
+        $Houses->save();
+    return redirect()->to('property')-> with('message','Successfully created Property');
     }
 
     /**
@@ -83,9 +99,9 @@ class ManagePropertiesController extends Controller
      */
     public function edit(ManageProperties $manageProperties)
     {
-        $Units =Units::find($id);
+        $Houses =Houses::find($id);
 
-        return view('manageUnits.edit',compact('manageUnits','id'));
+        return view('property.addhouses.edit',compact('addhouse','id'));
     }
 
     /**
@@ -100,24 +116,24 @@ class ManagePropertiesController extends Controller
          
         $request ->validate([
             'propertyName'=>'required',
-            'unitNumber'=>'required',
-            'bedrooms'=>'required',
-            'bathrooms'=>'required',
-            'propertyManager'=>'required',
+            'houseNumber'=>'required',
+            'houseType'=>'required',
+            'monthlyRent'=>'required',
+           
 
 
 
         ]);
-        $Units = Units::find($id);
-        $Units->propertyName= $request['propertyName'];
-        $Units->unitNumber= $request['unitNumber'];
-        $Units->bedrooms= $request['bedrooms'];
-        $Units->bathrooms= $request['bathrooms'];
-        $Units->propertyManager= $request['propertyManager'];
+        $Houses = Houses::find($id);
+        $Houses->propertyName= $request['propertyName'];
+        $Houses->unitNumber= $request['houseNumber'];
+        $Houses->bedrooms= $request['houseType'];
+        $Houses->bathrooms= $request['monthlyRent'];
+        
 
 
-        $Units->save();
-    return redirect()->to('/manageUnits')-> with('message','Successfully created Property');
+        $Houses->save();
+    return redirect()->to('property.addhouses')-> with('message','Successfully created Property');
     }
 
     /**

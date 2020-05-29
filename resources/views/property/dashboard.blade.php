@@ -11,10 +11,10 @@
             </div>
             <div class="col-sm-9">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#" class="btn btn-primary">Landlord Contract Form</a></li>
-                <li class="breadcrumb-item"><a href="#" class="btn btn-primary">Billing</a></li>
-              <li class="breadcrumb-item"><a href="{{ route ('manageUnits.index')}}" class="btn btn-primary">Manage Units</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('property.create')}}" class="btn btn-primary">Add New Property</a></li>
+                {{-- <li class="breadcrumb-item"><a href="#" class="btn btn-primary">Landlord Contract Form</a></li> --}}
+                {{-- <li class="breadcrumb-item"><a href="#" class="btn btn-primary">Billing</a></li> --}}
+                {{-- <li class="breadcrumb-item"><a href="{{ route ('propert.addhouses.index')}}" class="btn btn-primary">Manage Units</a></li> --}}
+                <li class="breadcrumb-item"><a href="{{ route('property.index')}}" class="btn btn-primary">Home</a></li>
 
               </ol>
             </div>
@@ -40,13 +40,11 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Property Name</th>
-              <th>Property Type</th>
-              <th>Property Description</th>
-              <th>Total  Units</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-              <th>Property Manager</th>
+              <th>Apartment Name</th>
+              <th>Apartment Type</th>
+              <th>Town</th>
+              <th>Location</th>
+              <th>Property Owner</th>
 
               <th></th>
             </tr>
@@ -57,16 +55,15 @@
 
             <tr>
               <td>{{$value->propertyName}}</td>
-              <td>{{$value->propertyType}}</td>
-              <td>{{$value->propertyDescription}}</td>
-              <td>{{$value->numberOfUnits}}</td>
-              <td>{{$value->address}}</td>
-              <td>{{$value->phoneNumber}}</td>
-              <td>{{$value->propertyManager}}</td>
+              <td>{{$value->apartmentsType}}</td>
+              <td>{{$value->townLocation}}</td>
+              <td>{{$value->location}}</td>
+              <td>{{$value->username}}</td>
               <td class="text-right py-0 align-middle">
                 <div class="btn-group btn-group-sm">
-                  <a href="{{ route('property.edit',$value['id'])}}" class="btn btn-info"> <i class="fas fa-eye">Update</i></a>
-                  <a href="{{ route('property.destroy',$value['id'])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
+                  <a href="{{ route('property.',$value['id'])}}" class="btn btn-info"> <i class="fas fa-eye">Details</i></a>
+
+                  {{-- <a href="{{ route('property.destroy',$value['id'])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a> --}}
                   
                  
                 </div>

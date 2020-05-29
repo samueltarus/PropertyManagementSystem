@@ -17,7 +17,7 @@ class tenant extends Model
     
         protected $fillable = [
            
-            'firstname','lastname','propertyName', 'unitNumber','phoneNumber','status','rent','services'
+            'firstname','lastname', 'username', 'passport', 'email' , 'address' ,'phoneNumber ','occupation'
         ];
     
         /**

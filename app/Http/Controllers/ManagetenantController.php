@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Managetenant;
+use DB;
+// use App\Managetenant;
 use Illuminate\Http\Request;
 
 class ManagetenantController extends Controller
@@ -14,7 +14,7 @@ class ManagetenantController extends Controller
      */
     public function index()
     {
-        return view ('tenant.managetenant.index');
+        return view ('tenant.assignhouses.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ManagetenantController extends Controller
      */
     public function create()
     {
-        //
+        return view ('tenant.assignhouses.create');
     }
 
     /**

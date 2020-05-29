@@ -179,25 +179,36 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-          <a href="{{ action('TenantController@index') }}" class="nav-link ">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Manage Tenant Information
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a> 
-                       
-          </li>
+               <li class="nav-item has-treeview menu-open">
+                <a href="{{route('tenant.index')}}" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                     Tenant  List  Information
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a> 
+                             
+                </li>
+               <li class="nav-item has-treeview menu-open">
+                <a href="{{ action('TenantController@create') }}" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      Register Tenant
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a> 
+                             
+                </li>
           <li class="nav-item">
-          <a href="{{ route ('tenantBilling.index')}}" class="nav-link">
+          <a href="{{route('ManagetenantController@create')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                 Tenant Billing
+                 Assign House
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
+          
           {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

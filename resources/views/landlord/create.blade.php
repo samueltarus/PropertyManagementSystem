@@ -1,15 +1,15 @@
 
-@extends('tenant.layouts')
+@extends('landlord.layouts')
 
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-md-8">
           <div class="card">
-              <div class="card-header">{{ __('Add Tenant') }}</div>
+              <div class="card-header">{{ __('Registration') }}</div>
 
               <div class="card-body">
-              <form method="POST" action="{{action('TenantController@store')}}">
+              <form method="POST" action="{{action('LandlordController@store')}}">
                       @csrf
 
                       <div class="form-group row">
@@ -38,20 +38,21 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
+                   
+                      <div class="form-group row">
+                          <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                          <div class="col-md-6">
+                              <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                            @error('username')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
+                              @error('username')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+                      <div class="form-group row">
                         <label for="passport" class="col-md-4 col-form-label text-md-right">{{ __('ID Number/PassPort') }}</label>
 
                         <div class="col-md-6">
@@ -65,10 +66,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -77,26 +78,12 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Physical Address') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
-
-                            @error('address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-             
                       <div class="form-group row">
-                        <label for="phoneNumber" class="col-md-4 col-form-label text-md-right">{{ __('Contact PhoneNumber') }}</label>
-
+                        <label for="phoneNumber" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+  
                         <div class="col-md-6">
                             <input id="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror" name="phoneNumber" value="{{ old('phoneNumber') }}" required autocomplete="phoneNumber" autofocus>
-
+  
                             @error('phoneNumber')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -105,27 +92,9 @@
                         </div>
                     </div>
 
-                      <div class="form-group row">
-                          <label for="occupation" class="col-md-4 col-form-label text-md-right">{{ __('Occupation') }}</label>
+                    
+                  
 
-                          <div class="col-md-6">
-                              {{-- <input id="occupation" type="text" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ old('occupation') }}" required autocomplete="occupation" autofocus> --}}
-                              <select name="occupation" id="occupation" class="form-control">
-
-                                @foreach ($occupation as $occupation) 
-                                <option value="{{$occupation->occupation}} ">
-                                    {{  $occupation->occupation  }}
-                                </option>
-                                @endforeach
-                            </select>
-                              @error('occupation')
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
-                              @enderror
-                          </div>
-                      </div>
-                      
                       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">
@@ -134,7 +103,7 @@
                           </div>
                       </div>
                   </form>
-              </div>   
+              </div>
           </div>
       </div>
   </div>

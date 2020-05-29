@@ -173,6 +173,7 @@
           <a href="#" class="d-block">Person Log in</a>
         </div>
       </div>
+    
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -180,35 +181,25 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-          <a href="{{ action("ManageLandlordController@index") }}" class="nav-link active">
+          <a href="{{ action("LandlordController@index") }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Landlord Details And Registration
+              All Landlords List 
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
 
           </li>
           <li class="nav-item">
-            <a href="{{ action("LandlordpaymentsController@index") }}" class="nav-link">
+            <a href="{{ action("LandlordController@create") }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Payments
+                Register New Landlords
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ action("ActionsController@index") }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Actions
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-
-
+         
           <li class="nav-header">LABELS</li>
           <li class="nav-item">
             <a href="{{ route('login') }}" class="nav-link">

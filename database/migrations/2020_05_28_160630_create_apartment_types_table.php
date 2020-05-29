@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateManagePropertiesTable extends Migration
+class CreateApartmentTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateManagePropertiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('manage_properties', function (Blueprint $table) {
+        Schema::create('apartment_types', function (Blueprint $table) {
             $table->id();
-            $table->string ('propertyDescription');
-            $table->string ('numberOfUnits');
-            $table->string ('address');
-            $table->string ('phoneNumber');
-            $table->string ('propertyManager');
+            $table->string('apartmentsType');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateManagePropertiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manage_properties');
+        Schema::dropIfExists('apartment_types');
     }
 }

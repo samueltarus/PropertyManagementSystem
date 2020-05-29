@@ -183,7 +183,7 @@
           <a href="{{ action("PropertyController@index")}}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Manage Properties
+                All Properties List
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -193,7 +193,16 @@
             <a href="{{ action('PropertyController@create')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Billing
+                Register New Apartments
+                <span class="right badge badge-danger"></span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ action('ManagePropertiesController@create')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add Houses
                 <span class="right badge badge-danger"></span>
               </p>
             </a>

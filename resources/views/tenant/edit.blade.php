@@ -18,6 +18,7 @@
                   @endif
 
               <div class="card-body">
+                  
               <form method="post" action="{{ action('TenantController@update',$id)}}">
                       @csrf
                       <input type="hidden" name="_method" value="PATCH" />

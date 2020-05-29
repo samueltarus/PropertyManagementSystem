@@ -14,8 +14,16 @@ class ManageUnitsController extends Controller
      */
     public function index()
     {
+
+        // $tenant =DB::table('tenant')
+        // ->join('properties', 'tenant.id', '=', 'properties.id')
+        // ->select('properties.propertyName','tenant.unitNumber','tenant.bedrooms','tenant.bathrooms', 'properties.propertyManager')
+        // ->get();
+        
+        // $propertyName =DB::table('properties')->select('properties.propertyName')->get();
+        // dd($propertyName);
      
-        return view('property.ManageUnits.index')->compact('property.ManageUnits.index');
+        //return view('property.ManageUnits.index')->compact('tenant',$tenant);
         
     }
 

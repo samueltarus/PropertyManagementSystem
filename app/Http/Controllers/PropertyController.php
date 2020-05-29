@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Property;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view ('property.create');
+        $apartmentsType =DB::table('apartment_types')->select('id','apartmentsType')->get();
+        $username =DB::table('landlords')->select('id','username')->get();
+        return view ('property.create',compact('apartmentsType','username'));
     }
 
     /**
@@ -38,15 +41,15 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
 
-
+        
         $request ->validate([
             'propertyName'=>'required',
-            'propertyType'=>'required',
+            'apartmentsType'=>'required',
+            'townLocation'=>'required',
+            'location'=>'required',
             'propertyDescription'=>'required',
-            'numberOfUnits'=>'required',
-            'address'=>'required',
-            'phoneNumber'=>'required',
-            'propertyManager'=>'required',
+            'username'=>'required',
+            'managementFee'=>'required',
 
 
 
@@ -54,12 +57,12 @@ class PropertyController extends Controller
         $Property = new  Property();
 
         $Property->propertyName= $request['propertyName'];
-        $Property->propertyType= $request['propertyType'];
+        $Property->apartmentsType= $request['apartmentsType'];
+        $Property->townLocation= $request['townLocation'];
+        $Property->location= $request['location'];
         $Property->propertyDescription= $request['propertyDescription'];
-        $Property->numberOfUnits= $request['numberOfUnits'];
-        $Property->address= $request['address'];
-        $Property->phoneNumber= $request['phoneNumber'];
-        $Property->propertyManager= $request['propertyManager'];
+        $Property->username= $request['username'];
+        $Property->managementFee= $request['managementFee'];
 
 
         $Property->save();
@@ -105,23 +108,25 @@ class PropertyController extends Controller
     {
         $this->validate($request,[
             'propertyName'=>'required',
-            'propertyType'=>'required',
+            'apartmentsType'=>'required',
+            'townLocation'=>'required',
+            'location'=>'required',
             'propertyDescription'=>'required',
-            'numberOfUnits'=>'required',
-            'address'=>'required',
-            'phoneNumber'=>'required',
-            'propertyManager'=>'required',
+            'username'=>'required',
+            'managementFee'=>'required',
+
 
         ]);
 
         $property  =Property::find($id);
-        $property ->propertyName =$request->get('propertyName');
-        $property ->propertyType =$request->get('propertyType');
-        $property ->propertyDescription =$request->get('propertyDescription');
-        $property ->numberOfUnits =$request->get('numberOfUnits');
-        $property ->address =$request->get('address');
-        $property ->phoneNumber =$request->get('phoneNumber');
-        $property ->propertyManager =$request->get('propertyManager');
+       
+        $property->propertyName= $request->get('propertyName');
+        $property->apartmentsType= $request->get('apartmentsType');
+        $property->townLocation= $request->get('townLocation');
+        $property->location= $request->get('location');
+        $property->propertyDescription= $request->get('propertyDescription');
+        $property->username= $request->get('username');
+        $property->managementFee= $request->get('managementFee');
 
         $property->save();
         return redirect()->route('property.index')->with('success','Data Updated');

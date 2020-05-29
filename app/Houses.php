@@ -4,19 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ManageLandlord extends Model
+class Houses extends Model
 {
-    
     //use Notifiable;
-    protected $table = 'manage_landlords';
+    protected $table = 'houses';
 
-    /**
+    /**web
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
     protected $fillable = [
-        'firstname','lastname','username', 'phonenumber','email','no_apartments','no_units','rent', 'services_amount',
+
+        
+        'propertyName','houseNumber','houseType','monthlyRent'
     ];
 
     /**
@@ -24,7 +26,7 @@ class ManageLandlord extends Model
      *
      * @var array
      */
-    
+
 
     /**
      * The attributes that should be cast to native types.
