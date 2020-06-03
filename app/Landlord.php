@@ -15,7 +15,7 @@ class Landlord extends Model
       * @var array
       */
      protected $fillable = [
-         'firstname','lastname','username', 'passport','email','phoneNumber',
+         'firstname','lastname','username', 'passport','email','phone_number',
      ];
  
      /**
@@ -33,4 +33,8 @@ class Landlord extends Model
      protected $casts = [
          'email_verified_at' => 'datetime',
      ];
+     public function properties()
+     {
+         return $this->hasMany('App\Property');
+     }
 }

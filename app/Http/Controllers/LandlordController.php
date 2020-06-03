@@ -15,7 +15,7 @@ class LandlordController extends Controller
      */
     public function index()
     {
-        $landlords =  Landlord::orderBy('id')->paginate(10);
+        $landlords =  Landlord::orderBy('id','DESC')->paginate(15);
         return view('landlord.dashboard')->with('landlords',$landlords);
     }
 
@@ -43,7 +43,7 @@ class LandlordController extends Controller
             'lastname'=>'required',
             'username'=>'required',
             'passport'=>'required',
-            'phoneNumber'=>'required',
+            'phone_number'=>'required',
             'email'=>'required',
             
            
@@ -56,7 +56,7 @@ class LandlordController extends Controller
         $landlord->username= $request['username'];
         $landlord->passport= $request['passport'];
         $landlord->email= $request['email'];
-        $landlord->phoneNumber= $request['phoneNumber'];
+        $landlord->phone_number= $request['phone_number'];
    
     $landlord->save();
     return redirect()->to('/landlord')-> with("Successfully created landlord");
@@ -69,9 +69,11 @@ class LandlordController extends Controller
      * @param  \App\Landlord  $landlord
      * @return \Illuminate\Http\Response
      */
-    public function show(Landlord $landlord)
+    public function show($id)
     {
-        //return view('register');
+        
+        $landlords =Landlord::find($id);
+        return view ('landlord.show',compact('landlords','id'));
     }
 
     /**
@@ -80,9 +82,12 @@ class LandlordController extends Controller
      * @param  \App\Landlord  $landlord
      * @return \Illuminate\Http\Response
      */
-    public function edit(Landlord $landlord)
+    public function edit($id)
     {
-        //
+        
+        $landlords = Landlord::find($id);
+
+        return view ('landlord.edit',compact('landlords'));
     }
 
     /**
@@ -92,9 +97,32 @@ class LandlordController extends Controller
      * @param  \App\Landlord  $landlord
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Landlord $landlord)
+    public function update(Request $request,  $id)
     {
-        //
+        $request->validate([
+
+            'firstname'=>'required',
+            'lastname'=>'required',
+            'username'=>'required',
+            'passport'=>'required',
+            'phone_number'=>'required',
+            'email'=>'required',
+                      
+
+
+        ]);
+        $landlords= Landlord::find($id);
+        
+        
+        $landlords->firstname= $request->get('firstname');
+        $landlords->lastname= $request->get('lastname');
+        $landlords->username= $request->get('username');
+        $landlords->passport= $request->get('passport');
+        $landlords->email= $request->get('email');
+        $landlords->phone_number= $request->get('phone_number');
+   
+    $landlords->save();
+    return redirect()->to('/landlord')-> with("Successfully created landlord");
     }
 
     /**

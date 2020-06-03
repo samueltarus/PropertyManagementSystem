@@ -200,7 +200,7 @@
                              
                 </li>
           <li class="nav-item">
-          <a href="{{route('ManagetenantController@create')}}" class="nav-link">
+          <a href="{{action('ManageTenantController@create')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                  Assign House
@@ -208,18 +208,7 @@
               </p>
             </a>
           </li>
-          
-          {{-- <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Actions On Landlords
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-            
-          </li> --}}
+         
          
           <li class="nav-header">LABELS</li>
           <li class="nav-item">
@@ -258,6 +247,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>

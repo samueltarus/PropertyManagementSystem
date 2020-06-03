@@ -18,13 +18,14 @@ class CreatePropertiesTable extends Migration
 
             $table->id();
             
-            $table->string ('propertyName');
-            $table->string ('apartmentsType');
-            $table->string('townLocation');
+            $table->string ('property_name');
+            $table->string ('apartments_type');
+            $table->string('county');
+            $table->string('town');
             $table->string('location');
-            $table->string ('propertyDescription');
+            $table->string ('property_description');
             $table->string ('username');
-            $table->integer('managementFee');
+            $table->integer('management_fee');
            
              $table->timestamps();
              

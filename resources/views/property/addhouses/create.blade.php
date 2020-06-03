@@ -14,17 +14,18 @@
 
                      <div class="form-group row">
 
-                       <label for="propertyName" class="col-md-4 col-form-label text-md-right">{{ __('Property Name') }}</label>
+                       <label for="property_name" class="col-md-4 col-form-label text-md-right">{{ __('Property Name') }}</label>
                        <div class="col-md-6">
                            {{-- <input id="unitNumber" type="text" class="form-control @error('unitNumber') is-invalid @enderror" name="unitNumber" value="{{ old('unitNumber') }}" required autocomplete="unitNumber" autofocus> --}}
-                            <select name="propertyName" id="propertyName" class="form-control">
+                            <select name="property_name" id="property_name" class="form-control">
 
-                                @foreach ($propertyName as $propertyName) 
-                                <option value="{{$propertyName->propertyName}} ">
-                                    {{  $propertyName->propertyName  }}
+                                @foreach ($property_name as $property_name) 
+                                <option value="{{$property_name->property_name}} ">
+                                    {{  $property_name->property_name  }}
                                 </option>
                                 @endforeach
                             </select>
+                            
                              @error('propertyName')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -35,12 +36,12 @@
                  </div>
                       
                       <div class="form-group row">
-                        <label for="houseNumber" class="col-md-4 col-form-label text-md-right">{{ __('House Number') }}</label>
+                        <label for="house_number" class="col-md-4 col-form-label text-md-right">{{ __('House Number') }}</label>
 
                         <div class="col-md-6">
-                            <input id="houseNumber" type="text" class="form-control @error('houseNumber') is-invalid @enderror" name="houseNumber" value="{{ old('houseNumber') }}" required autocomplete="houseNumber" autofocus>
+                            <input id="house_number" type="text" class="form-control @error('house_number') is-invalid @enderror" name="house_number" value="{{ old('house_number') }}" required autocomplete="house_number" autofocus>
 
-                            @error('houseNumber')
+                            @error('house_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -49,19 +50,19 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="houseType" class="col-md-4 col-form-label text-md-right">{{ __('House Type') }}</label>
+                        <label for="house_type" class="col-md-4 col-form-label text-md-right">{{ __('House Type') }}</label>
 
                         <div class="col-md-6">
                             {{-- <input id="houseType" type="text" class="form-control @error('houseType') is-invalid @enderror" name="houseType" value="{{ old('houseType') }}" required autocomplete="houseType" autofocus> --}}
-                            <select name="houseType" id="houseType" class="form-control">
+                            <select name="house_type" id="house_type" class="form-control">
 
-                                @foreach ($houseType as $houseType) 
-                                <option value="{{$houseType->houseType}} ">
-                                    {{  $houseType->houseType  }}
+                                @foreach ($house_type as $house_type) 
+                                <option value="{{$house_type->house_type}} ">
+                                    {{  $house_type->house_type  }}
                                 </option>
                                 @endforeach
                             </select>
-                            @error('houseType')
+                            @error('house_type')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -70,12 +71,12 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="monthlyRent" class="col-md-4 col-form-label text-md-right">{{ __('Monthly Rent') }}</label>
+                        <label for="monthly_rent" class="col-md-4 col-form-label text-md-right">{{ __('Monthly Rent') }}</label>
 
                         <div class="col-md-6">
-                            <input id="monthlyRent" type="text" class="form-control @error('monthlyRent') is-invalid @enderror" name="monthlyRent" value="{{ old('monthlyRent') }}" required autocomplete="monthlyRent" autofocus>
+                            <input id="monthly_rent" type="text" class="form-control @error('monthly_rent') is-invalid @enderror" name="monthly_rent" value="{{ old('monthly_rent') }}" required autocomplete="monthly_rent" autofocus>
 
-                            @error('monthlyRent')
+                            @error('monthly_rent')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

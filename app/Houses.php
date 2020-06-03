@@ -18,7 +18,7 @@ class Houses extends Model
     protected $fillable = [
 
         
-        'propertyName','houseNumber','houseType','monthlyRent'
+        'property_name','house_number','house_type','monthly_rent'
     ];
 
     /**
@@ -36,4 +36,8 @@ class Houses extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function properties(){
+        return $this->hasMany('App\tenant')
+    }
+
 }

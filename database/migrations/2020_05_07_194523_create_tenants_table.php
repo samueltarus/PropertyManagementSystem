@@ -24,7 +24,7 @@ class CreateTenantsTable extends Migration
             $table->integer ('passport');
             $table->string ('email');
             $table->string ('address');
-            $table->integer ('phoneNumber');
+            $table->integer ('phone_number');
             $table->string ('occupation');
             $table->timestamps();
             

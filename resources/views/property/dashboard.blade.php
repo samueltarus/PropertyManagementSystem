@@ -54,14 +54,15 @@
           @foreach ($properties  as $Property=> $value)
 
             <tr>
-              <td>{{$value->propertyName}}</td>
-              <td>{{$value->apartmentsType}}</td>
-              <td>{{$value->townLocation}}</td>
+              <td>{{$value->property_name}}</td>
+              <td>{{$value->apartments_type}}</td>
+              <td>{{$value->county}}</td>
+              <td>{{$value->town}}</td>
               <td>{{$value->location}}</td>
               <td>{{$value->username}}</td>
               <td class="text-right py-0 align-middle">
                 <div class="btn-group btn-group-sm">
-                  <a href="{{ route('property.',$value['id'])}}" class="btn btn-info"> <i class="fas fa-eye">Details</i></a>
+                  <a href="{{ route('property.show',$value['id'])}}" class="btn btn-info"> <i class="fas fa-eye">Details</i></a>
 
                   {{-- <a href="{{ route('property.destroy',$value['id'])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a> --}}
                   
@@ -81,18 +82,6 @@
     
     <!-- /.card -->
   </div>
-  <script>
-    $(document).ready(function () {
-      $('delete_form').on('submit',function(){
-        if (confirm("Are you sure you want to delete it?")) {
-          
-          return true;
 
-        } else {
-          return false;
-        }
-      
-    });
-    </script>
 
 @endsection

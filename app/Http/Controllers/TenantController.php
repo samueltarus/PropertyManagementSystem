@@ -17,7 +17,7 @@ class TenantController extends Controller
 
    // $tenant  =tenant::where('id',$tenant)->leftJoin('appartmentName' )->select('tenant.id','tenant.username')->first();
         $tenant = tenant::orderBy('id')->paginate(10);
-        return view('tenant.index')->with('tenant',$tenant);
+        return view('/tenant.index')->with('tenant',$tenant);
     }
 
     /**
@@ -48,7 +48,7 @@ class TenantController extends Controller
             'passport'=>'required',
             'email'=>'required',
             'address'=>'required',
-            'phoneNumber'=>'required',
+            'phone_number'=>'required',
             'occupation'=>'required',
 
 
@@ -62,13 +62,13 @@ class TenantController extends Controller
         $tenant->passport= $request['passport'];
         $tenant->email= $request['email'];
         $tenant->address= $request['address'];
-        $tenant->phoneNumber= $request['phoneNumber'];
+        $tenant->phone_number= $request['phone_number'];
         $tenant->occupation= $request['occupation'];
         
         
             
         $tenant->save();
-    return redirect()->to('tenant.index')-> with('message','Successfully created  Tenant');
+    return redirect()->to('/tenant')-> with('message','Successfully created  Tenant');
         
     }
 
@@ -78,9 +78,10 @@ class TenantController extends Controller
      * @param  \App\tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    public function show(tenant $tenant)
+    public function show($id)
     {
-        //
+        $tenant =tenant::find($id);
+        return view ('tenant.show',compact('tenant','id')); 
     }
 
     /**
@@ -91,9 +92,10 @@ class TenantController extends Controller
      */
     public function edit( $id)
     {
+         $occupation =DB::table('occupation')->select('id','occupation')->get();
         $tenant = tenant::find($id);
 
-        return view ('tenant.edit',compact('tenant',$tenant));
+        return view ('tenant.edit',compact('tenant','id','occupation'));
     }
 
     /**
@@ -104,16 +106,17 @@ class TenantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $request ->validate([
+    { 
+        $this->validate($request,[
+             
             'firstname'=>'required',
             'lastname'=>'required',
-            'propertyName'=>'required',
-            'unitNumber'=>'required',
-            'phoneNumber'=>'required',
-            'status'=>'required',
-            'rent'=>'required',
-            'services'=>'required',
+            'username'=>'required',
+            'passport'=>'required',
+            'email'=>'required',
+            'address'=>'required',
+            'phone_number'=>'required',
+            'occupation'=>'required',
 
         ]);
 
@@ -121,12 +124,12 @@ class TenantController extends Controller
 
         $tenant->firstname =$request->get('firstname');
         $tenant->lastname =$request->get('lastname');
-        $tenant->propertyName =$request->get('propertyName');
-        $tenant->unitNumber =$request->get('unitNumber');
-        $tenant->phoneNumber =$request->get('phoneNumber');
-        $tenant->status =$request->get('status');
-        $tenant->rent =$request->get('rent');
-        $tenant->services =$request->get('services');
+        $tenant->username =$request->get('username');
+        $tenant->passport =$request->get('passport');
+        $tenant->email =$request->get('email');
+        $tenant->address =$request->get('address');
+        $tenant->phone_number =$request->get('phone_number');
+        $tenant->occupation =$request->get('occupation');
 
         $tenant->save();
         return redirect()->route('tenant.index')->with('success','Tenant Updated successfully');

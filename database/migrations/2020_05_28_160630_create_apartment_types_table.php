@@ -15,7 +15,7 @@ class CreateApartmentTypesTable extends Migration
     {
         Schema::create('apartment_types', function (Blueprint $table) {
             $table->id();
-            $table->string('apartmentsType');
+            $table->string('apartments_type');
             $table->timestamps();
         });
     }

@@ -40,10 +40,10 @@ class ManagePropertiesController extends Controller
        
 
         //$propertyManager =DB::table('properties')->select('properties.propertyManager')->get();
-        $propertyName =DB::table('properties')->select('id','propertyName')->get();
-        $houseType =DB::table('house_type')->select('id','houseType')->get();
+        $property_name =DB::table('properties')->select('id','property_name')->get();
+        $house_type =DB::table('house_type')->select('id','house_type')->get();
         
-        return view('property.addhouses.create',compact('propertyName','houseType'));
+        return view('property.addhouses.create',compact('property_name','house_type'));
 
     }
 
@@ -59,10 +59,10 @@ class ManagePropertiesController extends Controller
         
 
         $request ->validate([
-            'propertyName'=>'required',
-            'houseNumber'=>'required',
-            'houseType'=>'required',
-            'monthlyRent'=>'required',
+            'property_name'=>'required',
+            'house_number'=>'required',
+            'house_type'=>'required',
+            'monthly_rent'=>'required',
 
 
 
@@ -71,10 +71,10 @@ class ManagePropertiesController extends Controller
 
         $Houses = new  Houses();
       
-        $Houses->propertyName= $request['propertyName'];
-        $Houses->houseNumber= $request['houseNumber'];
-        $Houses->houseType= $request['houseType'];
-        $Houses->monthlyRent= $request['monthlyRent'];
+        $Houses->property_name= $request['property_name'];
+        $Houses->house_number= $request['house_number'];
+        $Houses->house_type= $request['house_type'];
+        $Houses->monthly_rent= $request['monthly_rent'];
    
         $Houses->save();
     return redirect()->to('property')-> with('message','Successfully created Property');
@@ -115,20 +115,20 @@ class ManagePropertiesController extends Controller
     {
          
         $request ->validate([
-            'propertyName'=>'required',
-            'houseNumber'=>'required',
-            'houseType'=>'required',
-            'monthlyRent'=>'required',
+            'property_name'=>'required',
+            'house_number'=>'required',
+            'house_type'=>'required',
+            'monthly_rent'=>'required',
            
 
 
 
         ]);
         $Houses = Houses::find($id);
-        $Houses->propertyName= $request['propertyName'];
-        $Houses->unitNumber= $request['houseNumber'];
-        $Houses->bedrooms= $request['houseType'];
-        $Houses->bathrooms= $request['monthlyRent'];
+        $Houses->property_name= $request['property_name'];
+        $Houses->house_number= $request['house_number'];
+        $Houses->house_type= $request['house_type'];
+        $Houses->monthly_rent= $request['monthly_rent'];
         
 
 
@@ -146,4 +146,5 @@ class ManagePropertiesController extends Controller
     {
         //
     }
+  
 }

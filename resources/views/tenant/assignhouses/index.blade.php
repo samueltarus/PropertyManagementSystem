@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-3">
-                        <h1>All  Tent Properties</h1>
+                        <h1>All  Tenant Properties</h1>
                     </div>
                     <div class="col-sm-9">
                         <ol class="breadcrumb float-sm-right">
@@ -33,7 +33,7 @@
                     <thead>
                     <tr>
                         <th>Property Name</th>
-                        <th>Unit Number</th>
+                        <th>House Number</th>
                         <th>Number Of Bedrooms</th>
                         <th>Number Of Bathrooms</th>
                         <th>Property Manager</th>
@@ -48,7 +48,7 @@
                         @foreach ($Units  as $Units)
 
                             <tr>
-                          <td>{{$Units->propertyName}}</td>
+                          <td>{{$Units->property_name}}</td>
                           <td>{{$Units->unitNumber}}</td>
                           <td>{{$Units->bedrooms}}</td>
                           <td>{{$Units->bathrooms}}</td>

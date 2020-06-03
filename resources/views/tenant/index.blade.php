@@ -52,11 +52,11 @@
                  <td>{{$tenant->firstname}}</td>
                   <td>{{$tenant->lastname}}</td>
                   <td>{{$tenant->email}}</td>
-                  <td>{{$tenant->phoneNumber}}</td>
+                  <td>{{$tenant->phone_number}}</td>
                   
                   <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
-                    <a href="#" class="btn btn-info"><i class="fas fa-eye">Details</i></a>
+                    <a href="{{ route('tenant.show',$tenant['id'])}}" class="btn btn-info"><i class="fas fa-eye">Details</i></a>
                       <a href="#" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
                     </div>
                   </td>

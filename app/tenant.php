@@ -17,7 +17,7 @@ class tenant extends Model
     
         protected $fillable = [
            
-            'firstname','lastname', 'username', 'passport', 'email' , 'address' ,'phoneNumber ','occupation'
+            'firstname','lastname', 'username', 'passport', 'email' , 'address' ,'phone_number ','occupation'
         ];
     
         /**
@@ -35,5 +35,9 @@ class tenant extends Model
         protected $casts = [
             'email_verified_at' => 'datetime',
         ];
+        public function properties()
+        {
+            return $this->belongsTo('App\Property');
+        }
     
 }

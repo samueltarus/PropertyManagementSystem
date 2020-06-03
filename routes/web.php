@@ -13,40 +13,72 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
-Auth::routes(['register'=>false]);
+//  Auth::routes(['register'=>false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-//manage landlords
-        Route::resource('/landlord','LandlordController') ;
-        Route::resource('/landlord/managelandlords','ManageLandlordController');
-    
-
-     
-
-//manage Properties
-        Route::resource('/property','PropertyController');
-        Route::resource('/property/addhouses','ManagePropertiesController');
+ Route::get('/home', 'HomeController@index')->name('home');
 
 
+// Route::prefix('admin')->group(function (){
+
+//  Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
+// Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
+// Route::resource('/dashboard','DashboardController');
 
 
-//manage Tenants
-        Route::resource('/tenant','TenantController');
-        Route::resource('/tenant/assignhouses','ManagetenantController');
+// });
 
 
-//manage Accounts and Finance
-        Route::get('/accountsFinance','FinanceandAccountsController@index') ->name('dashboard');
+//   Route::middleware(['auth'])->group(function(){
+      
+  //Dashboard Controller
+ Route::resource('/dashboard','DashboardController');
+
+  //admin 
+  Route::resource('/admin','AdminController');
+
+
+
+  //manage landlords
+          Route::resource('/landlord','LandlordController') ;
+        //   Route::resource('/landlord/managelandlords','ManageLandlordController');
+      
   
+       
+  
+  //manage Properties
+          Route::resource('/property','PropertyController');
+         Route::resource('/property/addhouses','ManagePropertiesController');
+  
+  //manage houses
+          Route::resource('/houses','HousesController');
+          Route::resource('/houses/vacant','VacantController');
+          Route::resource('/houses/occupied','OccupiedController');
+  
+  
+  
+  //manage Tenants
+  
+          Route::resource('/tenant','TenantController');
+          Route::resource('tenant/assignhouses','ManageTenantController');
+          Route::get('/property_name/{id}','ManageTenantController@property_name')->name('property_name');
+  
+  
+          //Route::resource('/tenant/assignhouses','ManageTenantController');
+  
+  
+  //manage Accounts and Finance
+        //   Route::get('/accountsFinance','FinanceandAccountsController@index') ->name('dashboard');
 
+
+
+
+        
+//  });
 
 
 
