@@ -1,5 +1,5 @@
 
-@extends('invoice.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
     <div class="container">
@@ -7,35 +7,109 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-3">
-                  <h1>Landlords Information And Actions</h1>
+                  <h1>Landlord Income</h1>
                 </div>
                 <div class="col-sm-9">
                   <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{ action("LandlordController@index")}}" class="btn btn-secondary">Home</a></li>
                   {{-- <li class="breadcrumb-item"><a href="#" class="btn btn-secondary">Show Landlord Detail</a></li> --}}
                   </ol>
+                  
                 </div>
               </div>
+              <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div><!-- /.container-fluid -->
           </section>
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Rent Collection</span>
+                  <span class="info-box-number">
+                    10
+                    <small>%</small>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Placement Fee Collection</span>
+                  <span class="info-box-number">41,410</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+  
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+  
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">Landlord Revenue  On Placement</span>
+                  <span class="info-box-number">760</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">Landlord Revenue On Rent</span>
+                  <span class="info-box-number">2,000</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+          
         <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Landlords Details Management</h3>
+              <h3 class="card-title">Landlord Income</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                   <i class="fas fa-minus"></i></button>
               </div>
             </div>
+           
+               
 
         <div class="card-body p-0">
             <table class="table">
               <thead>
                 <tr>
-                  <th>Listing Number</th>
-                  <th>Billing For</th>
-                  <th>View Invoices</th>
-                  <th> Actions</th>
+                  <th>Rent Collections</th>
+                  <th>Placement Fee Collection</th>
+                
                   <th></th>
                 </tr>
               </thead>
@@ -46,16 +120,9 @@
                    <tr>
                
                   
-                  <td class="text-right py-0 align-middle">
-                    <div class="btn-group btn-group-sm">
-                     
-                      <a href="{{ route('landlord.show',$landlords['id'])}}" class="btn btn-info"><i class="fas fa-eye">View Details</i></a>
-                      <a href="{{action('LandlordController@destroy', [$landlords->id])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
-                    </div>
-                  </td>
+                  
                 <tr>
 
-                  @endforeach
 
               </tbody>
               
@@ -63,6 +130,7 @@
             </table>
            {{-- {{ $landlords->links() }} --}}
           </div>
+          
           
           <!-- /.card-body -->
         </div>

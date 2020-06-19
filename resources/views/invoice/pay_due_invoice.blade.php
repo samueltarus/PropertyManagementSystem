@@ -1,5 +1,5 @@
 
-@extends('invoice.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
     <div class="container">

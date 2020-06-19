@@ -1,12 +1,12 @@
 
-@extends('landlord.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-md-8">
           <div class="card">
-              <div class="card-header">{{ __('Registration') }}</div>
+              <div class="card-header">{{ __('Update') }}</div>
               @if (count($errors)>0)
               <div  class="alert alert-danger">
                   <ul>
@@ -18,10 +18,11 @@
                   @endif
 
               <div class="card-body">
-              <form method="POST" action="{{action('LandlordController@update',$landlords->id)}}">
-                      @csrf
-                      @method('PUT')
-                      <input type="hidden" name="_method" value="PATCH" />
+              <form enctype="multipart/form-data" method="POST" action="{{url('update-landlord',$landlords->id)}}">
+                      
+                      {{ csrf_field() }}
+                      
+                      
 
                       <div class="form-group row">
                           <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
@@ -102,7 +103,19 @@
                             @enderror
                         </div>
                     </div>
+                    {{-- <div class="form-group row">
+                        <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Upload Image') }}</label>
 
+                        <div class="col-md-6">
+                            <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ $landlords ->avatar }}" required autocomplete="avatar">
+
+                            @error('avatar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div> --}}
                     
                   
 

@@ -18,9 +18,10 @@ class CreateLandlordsTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('username');
-            $table->integer('passport');
+            $table->string('passport');
             $table->string('phone_number')->unique();
             $table->string('email')->unique();
+            $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });

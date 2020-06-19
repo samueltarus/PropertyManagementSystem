@@ -16,7 +16,7 @@ class Property extends Model
      */
 
     protected $fillable = [
-        'property_name','apartments_type','county','town','location','property_description', 'username','management_fee',
+        'property_id','landlord_id','property_name','apartments_type','county','town','location','property_description', 'username','management_fee',
     ];
 
     /**

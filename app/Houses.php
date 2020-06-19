@@ -18,7 +18,7 @@ class Houses extends Model
     protected $fillable = [
 
         
-        'property_name','house_number','house_type','monthly_rent'
+        'property_id','property_name','house_number','house_type','monthly_rent','house_status'
     ];
 
     /**
@@ -36,8 +36,11 @@ class Houses extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function properties(){
-        return $this->hasMany('App\tenant')
+    // public function properties(){
+    //     return $this->hasMany('App\tenant');
+    // }
+    public function property (){
+        return $this->belongsTo('App\Property');
     }
 
 }

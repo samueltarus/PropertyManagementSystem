@@ -1,5 +1,5 @@
 
-@extends('landlord.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
     <div class="container">
@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-sm-9">
                   <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="{{ action("LandlordController@index")}}" class="btn btn-secondary">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{{ URL::to('all-landlord')}}" class="btn btn-secondary">Home</a></li>
                   {{-- <li class="breadcrumb-item"><a href="#" class="btn btn-secondary">Show Landlord Detail</a></li> --}}
                   </ol>
                 </div>
@@ -37,7 +37,7 @@
                   <th>Username</th>
                   <th> Email</th>
                   <th>Phone Number</th>
-                  <th>Owns</th>
+                 
                   <th></th>
                 </tr>
               </thead>
@@ -52,13 +52,13 @@
                    <td>{{$landlords->username}}</td>
                   <td>{{$landlords->email}}</td>
                   <td>{{$landlords->phone_number}}</td>
-                   <td>{{$landlords->owns}}</td>
+                 
                   
                   <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
                      
-                      <a href="{{ route('landlord.show',$landlords['id'])}}" class="btn btn-info"><i class="fas fa-eye">View Details</i></a>
-                      <a href="{{action('LandlordController@destroy', [$landlords->id])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
+                    <a href="{{URL::to('/show-landlord/'.$landlords->id)}}" class="btn btn-info"><i class="fas fa-eye">View Details</i></a>
+                    <a href="{{URL::to('/delete-landlord/'.$landlords->id)}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
                     </div>
                   </td>
                 <tr>

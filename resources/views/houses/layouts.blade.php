@@ -180,29 +180,29 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-          <a href="{{ action("PropertyController@index")}}" class="nav-link ">
+          <a href="{{ action("HousesController@index")}}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                All Properties List
+                All Houses
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
 
           </li>
           <li class="nav-item">
-            <a href="{{ action('PropertyController@create')}}" class="nav-link">
+            <a href="{{ route('VacantController@index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Register New Apartments
+                List Vacant
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ action('ManagePropertiesController@create')}}" class="nav-link">
+            <a href="{{ action('OccupiedController@index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Add Houses
+                List Occupied
                 <span class="right badge badge-danger"></span>
               </p>
             </a>

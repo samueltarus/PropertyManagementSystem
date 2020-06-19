@@ -40,7 +40,7 @@ class ManagePropertiesController extends Controller
        
 
         //$propertyManager =DB::table('properties')->select('properties.propertyManager')->get();
-        $property_name =DB::table('properties')->select('id','property_name')->get();
+        $property_name =DB::table('properties')->select('property_id','property_name')->get();
         $house_type =DB::table('house_type')->select('id','house_type')->get();
         
         return view('property.addhouses.create',compact('property_name','house_type'));
@@ -63,6 +63,7 @@ class ManagePropertiesController extends Controller
             'house_number'=>'required',
             'house_type'=>'required',
             'monthly_rent'=>'required',
+            'house_status'=>'required',
 
 
 
@@ -75,6 +76,8 @@ class ManagePropertiesController extends Controller
         $Houses->house_number= $request['house_number'];
         $Houses->house_type= $request['house_type'];
         $Houses->monthly_rent= $request['monthly_rent'];
+        $Houses->house_status= $request['house_status'];
+        
    
         $Houses->save();
     return redirect()->to('property')-> with('message','Successfully created Property');

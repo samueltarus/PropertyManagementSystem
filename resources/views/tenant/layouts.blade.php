@@ -247,6 +247,43 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+  
+<script>
+  $(document).ready(function(){
+  
+   $('.dynamic').change(function(){
+  
+    if($(this).val() != '')
+    {
+     var select = $(this).attr("id");
+     var value = $(this).val();
+     var dependent = $(this).data('dependent');
+     var _token = $('input[name="_token"]').val();
+     $.ajax({
+      url:"fetch",
+      method:"POST",
+      data:{select:select, value:value, _token:_token, dependent:dependent},
+      success:function(result)
+      {
+       $('#'+dependent).html(result);
+      }
+  
+     })
+    }
+   });
+  
+   $('#property_name').change(function(){
+    $('#house_number').val('');
+    $('#mountly_rent').val('');
+   });
+  
+   $('#house_number').change(function(){
+    $('#mountly_rent').val('');
+   });
+   
+  
+  });
+  </script>
 
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->

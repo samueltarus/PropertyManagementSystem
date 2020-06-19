@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use\App\AssignHouses;
+use\App\Houses;
+use\App\Property;
 
 class ManageTenantController extends Controller
 {
@@ -14,6 +16,8 @@ class ManageTenantController extends Controller
      */
     public function index()
     {
+       
+
         return view ('tenant.assignhouses.index');
     }
 
@@ -25,13 +29,20 @@ class ManageTenantController extends Controller
     public function create()
      { 
 
-        $house_number=DB::table('houses')->select('house_number')->get();
-       $monthly_rent=DB::table('houses')->select('monthly_rent')->get();
-         $property_name =DB::table('houses')->select('property_name')->get();
-
-        return view ('tenant.assignhouses.create',compact('property_name','monthly_rent','house_number'));
+        
+        
+    //    $property_name = Property::all('id', 'property_name');
+        // $house_number=DB::table('houses')->where('property_id','id')->select('house_number','id','property_name')->get();
+    //    $monthly_rent=DB::table('houses')->select('monthly_rent')->get();
+    //    $house_number=DB::table('houses')->select('house_number')->get();
+    
+    $property_name =DB::table('properties')->select( 'property_id','property_name')->get();
+    
+        return view ('tenant.assignhouses.create',compact('property_name'));
+        // return view ('tenant.assignhouses.create');
     }
 
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -40,12 +51,14 @@ class ManageTenantController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         
 
         $request ->validate([
             'property_name'=>'required',
             'house_number'=>'required',
-            'predifened_monthly_rent'=>'required',
+            'monthly_rent'=>'required',
             'tenant_ID'=>'required',
             'tenant_name'=>'required',
             'deposit'=>'required',
@@ -61,7 +74,7 @@ class ManageTenantController extends Controller
       
         $AssignHouses->property_name= $request['property_name'];
         $AssignHouses->house_number= $request['house_number'];
-        $AssignHouses->predifened_monthly_rent= $request['predifened_monthly_rent'];
+        $AssignHouses->monthly_rent= $request['monthly_rent'];
         $AssignHouses->tenant_ID= $request['tenant_ID'];
         $AssignHouses->tenant_name= $request['tenant_name'];
         $AssignHouses->deposit= $request['deposit'];
@@ -116,16 +129,30 @@ class ManageTenantController extends Controller
         //
     }
   
-    public function property_name($id){
+    // public function property_name($id){
+    //     $house_number=DB::table('houses')->where('property_id',$id)->select('house_number','id')->get();
 
-    	// Fetch Users by Departmentid
-        $userData['data'] = houses::orderby("name","asc")
-        			->select('id','apartment_name')
-        			->where('properties',$id)
-        			->get();
-  
-        echo json_encode($userData);
-        exit;
-    }
+    //     //$house_number =Houses::where('property_id',$id)->pluck("house_number","id");
+    //     return json_encode($house_number);
     
-}
+    //             }
+
+            function fetch(Request $request)
+            {
+            $select = $request->get('select');
+            $value = $request->get('value');
+            $dependent = $request->get('dependent');
+            $data = DB::table('houses')
+            ->where($select, $value)
+            ->groupBy($dependent)
+            ->get();
+            $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+            foreach($data as $row)
+            {
+            $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
+            }
+            echo $output;
+            }
+            
+
+};

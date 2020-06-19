@@ -1,4 +1,4 @@
-@extends('houses.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
   <!-- /.content-header -->
@@ -7,7 +7,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-3">
-              <h1>Occupied Houses</h1>
+              <h1>All Houses</h1>
             </div>
             <div class="col-sm-9">
               <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@
       </section>
     <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">All Houses</h3>
+          <h3 class="card-title">List of All Houses </h3>
           @if ($message = Session::get('success'))
           <div class="alert alert-success">
             <p>{{$message}}</p>
@@ -40,34 +40,37 @@
         <table class="table">
           <thead>
             <tr>
+              <th>Building</th>
               <th>House Number</th>
               <th>House Type</th>
-              <th>Building |Apartment</th>
-              <th>Teant Name</th>
-              <th>Property Owner</th>
+              <th>Tenant Names</th>
+
+              
 
               <th></th>
             </tr>
           </thead>
           <tbody>
 
-        
+            @foreach ($all_occupied_houses  as $all_occupied_houses)
 
             <tr>
-             
-              <td class="text-right py-0 align-middle">
-                <div class="btn-group btn-group-sm">
-                  {{-- <a href="#" class="btn btn-info"> <i class="fas fa-eye">Edit</i></a> --}}
-
-                  <a href="#" class="btn btn-danger"><i class="fas fa-trash">Vacate Tenant</i></a>
-                  
-                 
-                </div>
-
-              </td>
+          <td>{{$all_occupied_houses->property_name}}</td>
+          <td>{{$all_occupied_houses->house_number}}</td>
+          <td>{{$all_occupied_houses->house_type}}</td>
+          <td>{{$all_occupied_houses->username}}</td>
+              
+          <td class="text-right py-0 align-middle">
+            <div class="btn-group btn-group-sm">
+              <a href="#" class="btn btn-info"> <i class="fas fa-eye">Vacant Tenant</i></a>
+               </div>
+          </td>
+              <tr>
+                @endforeach
+            
               <tr>
 
-        
+               
 
           </tbody>
         </table>
@@ -77,18 +80,6 @@
     
     <!-- /.card -->
   </div>
-  <script>
-    $(document).ready(function () {
-      $('delete_form').on('submit',function(){
-        if (confirm("Are you sure you want to delete it?")) {
-          
-          return true;
-
-        } else {
-          return false;
-        }
-      
-    });
-    </script>
+  
 
 @endsection

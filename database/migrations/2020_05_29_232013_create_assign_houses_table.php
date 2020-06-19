@@ -19,7 +19,7 @@ class CreateAssignHousesTable extends Migration
             $table->id();
             $table->string('property_name');
             $table->string('house_number');
-            $table->integer('predifened_monthly_rent');
+            $table->integer('monthly_rent');
             $table->string('tenant_ID');
             $table->string('tenant_name');
             $table->integer('deposit');

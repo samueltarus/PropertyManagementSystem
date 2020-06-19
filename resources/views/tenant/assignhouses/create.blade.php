@@ -1,5 +1,5 @@
 
-@extends('tenant.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
 <div class="container">
@@ -9,20 +9,24 @@
               <div class="card-header">{{ __('Allocate    Units') }}</div>
 
               <div class="card-body">
-              <form method="POST" action="{{action('ManageTenantController@store')}}">
+              <form id="assignhouses" method="POST" action="{{action('ManageTenantController@store')}}">
                       @csrf
-
+                      {{ csrf_field() }}
                      <div class="form-group row">
 
                        <label for="property_name" class="col-md-4 col-form-label text-md-right">{{ __('Property Name') }}</label>
                        <div class="col-md-6">
-                           {{-- <input id="unitNumber" type="text" class="form-control @error('unitNumber') is-invalid @enderror" name="unitNumber" value="{{ old('unitNumber') }}" required autocomplete="unitNumber" autofocus> --}}
-                            <select name="property_name" id="property_name" class="form-control">
-                                <option value="">--select--</option>
+                           {{-- <input id="property_name" type="text" class="form-control @error('property_name') is-invalid @enderror" name="property_name" value="{{ old('property_name') }}" required autocomplete="property_name" autofocus> --}}
+                            <select name="property_name" class="property_name" id="property_name" class="form-control " value="property_name">
+                                
+                               
+
                                 @foreach ($property_name as $property_name)
-                                 <option value="{{$property_name->property_name}} "> 
-                                {{$property_name->property_name}}      </option>
+                                
+                                 <option value="{{$property_name->id}} "> {{$property_name->property_name}}     </option>
+                                
                                 @endforeach
+
                             </select>
                              @error('property_name')
                                 <span class="invalid-feedback" role="alert">
@@ -36,16 +40,18 @@
 
                     <label for="house_number" class="col-md-4 col-form-label text-md-right">{{ __('House Number') }}</label>
                     <div class="col-md-6">
-                        {{-- <input id="unitNumber" type="text" class="form-control @error('unitNumber') is-invalid @enderror" name="unitNumber" value="{{ old('unitNumber') }}" required autocomplete="unitNumber" autofocus> --}}
-                         <select name="house_number" id="house_number" class="form-control input-lg dynamic" data-dependent ="house_number">
-                          
-                           
-                   @foreach ($house_number as $house_number) 
+                        {{-- <input id="house_number" type="text" class="form-control @error('house_number') is-invalid @enderror" name="house_number" value="{{ old('house_number') }}" required autocomplete="unitNumber" autofocus> --}}
+                          <select name="house_number"   class="house_number" id="house_number" class="form-control"  value="house_number"> 
+                              
+                            <option value="0" disabled="true" selected="true">Select House Number</option>
+{{--                         
+                           @foreach ($house_number as $house_number) 
                              <option value="{{$house_number->house_number}} ">
                                  {{  $house_number->house_number  }}
                              </option>
-                             @endforeach 
-                         </select>
+                             @endforeach  --}}
+                             
+                         </select> 
                           @error('house_number')
                              <span class="invalid-feedback" role="alert">
                                  <strong>{{ $message }}</strong>
@@ -56,20 +62,12 @@
               </div>
                       
                       <div class="form-group row">
-                        <label for="predifened_monthly_rent" class="col-md-4 col-form-label text-md-right">{{ __('Predifened Monthly Rent') }}</label>
+                        <label for="monthly_rent" class="col-md-4 col-form-label text-md-right">{{ __('Predifened Monthly Rent') }}</label>
 
                         <div class="col-md-6">
-                            {{-- <input id="predifened_monthly_rent" type="text" class="form-control @error('predifened_monthly_rent') is-invalid @enderror" name="predifened_monthly_rent" value="{{ old('predifened_monthly_rent') }}" required autocomplete="predifened_monthly_rent" autofocus> --}}
-                            <select name="predifened_monthly_rent" id="predifened_monthly_rent" class="form-control input-lg dynamic" >
-                                <option>--Predifened Monthly Rent--</option>
-                                      
-                                  @foreach ($monthly_rent as $predifened_monthly_rent) 
-                                 <option value="{{$predifened_monthly_rent->predifened_monthly_rent}} ">
-                                     {{  $predifened_monthly_rent->predifened_monthly_rent  }}
-                                 </option>
-                                 @endforeach
-                             </select>
-                            @error('predifened_monthly_rent')
+                            <input id="monthly_rent" type="text"  class="monthly_rent"  class="form-control @error('monthly_rent') is-invalid @enderror" name="monthly_rent" value="{{ old('monthly_rent') }}" required autocomplete="monthly_rent" autofocus>
+                            
+                            @error('monthly_rent')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -145,50 +143,45 @@
       </div>
   </div>
 </div>  
-<script>
 
-    $(document).ready(function(){
-
-      $('#property_name').change(function(){
-
-         // Department id
-         var id = $(this).val();
-
-         // Empty the dropdown
-         $('#house_number').find('option').not(':first').remove();
-
-         // AJAX request 
-         $.ajax({
-           url: 'property_name/'+id,
-           type: 'get',
-           dataType: 'json',
-           success: function(response){
-
-             var len = 0;
-             if(response['data'] != null){
-               len = response['data'].length;
-             }
-
-             if(len > 0){
-               // Read data and create <option >
-               for(var i=0; i<len; i++){
-
-                 var id = response['data'][i].id;
-                 var apartment_name = response['data'][i].apartment_name;
-
-                 var option = "<option value='"+id+"'>"+apartment_name+"</option>"; 
-
-                 $("#house_number").append(option); 
-               }
-             }
-
-           }
-        });
-      });
-
-    });
-
-    </script>
 
   @endsection
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+
+    $('#assignhouse').on('submit',function(event){
+      event.preventDefault();
+
+      property_name = $('#property_name').val();
+      house_number = $('#house_number').val();
+      monthly_rent = $('#monthly_rent').val();
+      tenant_ID = $('#tenant_ID').val();
+      tenant_name = $('#tenant_name').val();
+      deposit = $('#deposit').val();
+      rent_paid = $('#rent_paid').val();
+      
+
+
+      $.ajax({
+        url:'{!!URL::to('/tenant/assignhouses')!!}',
+        type:"POST",
+        data:{
+          "_token": "{{ csrf_token() }}",
+          property_name:property_name,
+          house_number:house_number,
+          monthly_rent:monthly_rent,
+          tenant_ID:tenant_ID,
+          tenant_name:tenant_name,
+          deposit:deposit,
+          rent_paid:rent_paid,
+        },
+        success:function(response){
+          console.log(response);
+        },
+       });
+      });
+
+</script>
+
   

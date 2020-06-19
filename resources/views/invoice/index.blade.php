@@ -1,5 +1,5 @@
 
-@extends('invoice.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
     <div class="container">
@@ -7,7 +7,7 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-3">
-                  <h1>Landlords Information And Actions</h1>
+                  <h1>Tenants Invoices</h1>
                 </div>
                 <div class="col-sm-9">
                   <ol class="breadcrumb float-sm-right">
@@ -20,7 +20,7 @@
           </section>
         <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Landlords Details Management</h3>
+              <h3 class="card-title">Invoices Management</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -32,30 +32,33 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>Listing Number</th>
-                  <th>Billing For</th>
-                  <th>View Invoices</th>
-                  <th> Actions</th>
+                  <th>House </th>
+                  <th>Tenant</th>
+                  <th>Rent</th>
+                  <th> Monthly  Bill</th>
+                  <th>Carry Forward </th>
+                  <th>Penalty</th>
+                  <th>Total Payments</th>
+                  <th> Paid In</th>
+                  <th>Balance</th>
+                  <th> Status</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
 
-               
+                    
 
                    <tr>
-               
+                   
                   
                   <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
-                     
-                      <a href="{{ route('landlord.show',$landlords['id'])}}" class="btn btn-info"><i class="fas fa-eye">View Details</i></a>
-                      <a href="{{action('LandlordController@destroy', [$landlords->id])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
+                        <a href="{{URL::to('/generate-invoice')}}" class="btn btn-danger"><i class="fas fa-trash">Print</i></a>
+                      <a href="#" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
                     </div>
                   </td>
                 <tr>
-
-                  @endforeach
 
               </tbody>
               

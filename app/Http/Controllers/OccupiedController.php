@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Houses;
+
+use DB;
 use Illuminate\Http\Request;
 
 class OccupiedController extends Controller
@@ -13,7 +16,13 @@ class OccupiedController extends Controller
      */
     public function index()
     {
-        return view('occupied.index');
+        $all_occupied_houses = DB::table('houses')
+                    ->join('properties', 'houses.property_id',  '=', 'properties.id')
+                    
+                    ->select('houses.*', 'properties.property_name','properties.apartments_type','properties.county','properties.town','properties.location','properties.username')
+                    ->where('house_status',1)
+                    ->get();
+        return view('houses.occupied.index',compact('all_occupied_houses'));
     }
 
     /**
@@ -23,7 +32,7 @@ class OccupiedController extends Controller
      */
     public function create()
     {
-        return view ('occupied.create');
+        // return view ('occupied.create');
     }
 
     /**

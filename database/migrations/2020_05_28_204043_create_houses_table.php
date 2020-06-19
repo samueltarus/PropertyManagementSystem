@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHousesTypesTable extends Migration
+class CreateHousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateHousesTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('houses_types', function (Blueprint $table) {
+        Schema::create('houses', function (Blueprint $table) {
             $table->id();
-            $table->integer('property_id')->unsigned();
-            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedInteger('property_id')->index()->nullable();
+            $table->foreign('property_id')->references('property_id')->on('properties')->onDelete('cascade')->onUpdate('cascade');
             $table->string('property_name');
-            $table->string('house_number')->unique();
+            $table->string('house_number');
             $table->string('house_type');
             $table->string('monthly_rent');
+            $table->integer('house_status');
             
             $table->timestamps();
         });
@@ -33,6 +34,6 @@ class CreateHousesTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('houses_types');
+        Schema::dropIfExists('houses');
     }
 }

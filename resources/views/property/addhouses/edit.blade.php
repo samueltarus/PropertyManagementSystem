@@ -1,5 +1,5 @@
 
-@extends('property.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
 <div class="container">
@@ -18,7 +18,7 @@
                   @endif
 
               <div class="card-body">
-              <form method="post" action="{{ action('PropertyController@update',$id)}}">
+              <form method="post" action="{{ action('PropertyController@update',$property_id)}}">
                       @csrf
                       <input type="hidden" name="_method" value="PATCH" />
 

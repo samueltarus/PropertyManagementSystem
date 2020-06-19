@@ -15,7 +15,7 @@ class Landlord extends Model
       * @var array
       */
      protected $fillable = [
-         'firstname','lastname','username', 'passport','email','phone_number',
+         'firstname','lastname','username', 'passport','email','phone_number','avatar',
      ];
  
      /**

@@ -31,14 +31,14 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-dark secondary-color">
+  <nav class="main-header navbar navbar-expand navbar-orange navbar-dark  secondary-color">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ action("LandlordController@index")}}" class="btn btn-secondary">Home</a>
+        <a href="{{ action("DashboardController@index")}}" class="btn btn-secondary">Home</a>
       </li>
       {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -191,7 +191,7 @@
 
           </li>
           <li class="nav-item">
-            <a href="{{ action('LandlordController@index')}}" class="nav-link">
+            <a href="{{ URL::to('all_landlord')}}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                LandLords
@@ -199,14 +199,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
+              
               <li class="nav-item">
-                <a href="{{ action("LandlordController@index") }}" class="nav-link">
+                <a href="{{ URL::to('all-landlord') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Landlords List </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ action("LandlordController@create") }}"  class="nav-link active">
+                <a href="{{ URL::to('add-landlord') }}"  class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p> Register New Landlords</p>
                 </a>
@@ -235,6 +237,13 @@
                   <p> Register New Apartments</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Apartment Types</p>
+                </a>
+              </li>
+              
               <li class="nav-item">
                 <a href="{{ action('ManagePropertiesController@create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -273,7 +282,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ action('HousesController@create')}}" class="nav-link">
+            <a href="{{ action('HousesController@index')}}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Houses
@@ -282,22 +291,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ action("PropertyController@index")}}" class="nav-link">
+                <a href="{{ action("HousesController@index")}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>  All Properties List</p>
+                  <p>  Houses  List</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link active">
+                <a href="{{action ('VacantController@index')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p> List Vacant</p>
                 </a>
               </li>
+              
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{action ('OccupiedController@index')}}" class="nav-link  ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p> List Occupied</p>
                 </a>
+                
               </li>
             </ul>
           </li>
@@ -367,23 +379,32 @@
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
+           
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                
+                <a href="{{ action('InvoiceController@index')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>List Invoices</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link active">
+                <a href="{{ URL::to('prepare-invoice')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>Prepare Invoice</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="./index3.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pay Due Invoices</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="./index3.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>List Overpayments</p>
                 </a>
               </li>
             </ul>
@@ -398,23 +419,18 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+              <a href="{{URL::to('/company-income')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Company Income</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link active">
+                <a href="{{URL::to('/landlord-income')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>Landlord Income</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
+             
             </ul>
           </li>
           <li class="nav-item">
@@ -427,7 +443,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ action("AdminController@index") }}"class="nav-link">
+                <a href="#"class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p> All Admins </p>
                 </a>
@@ -441,18 +457,7 @@
               
             </ul>
           </li>
-          {{-- <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Actions On Landlords
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-
-          </li> --}}
-
+        
           <li class="nav-header">LABELS</li>
           <li class="nav-item">
             <a href="{{ route('login') }}" class="nav-link">
@@ -489,6 +494,82 @@
 </div>
 <!-- ./wrapper -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+
+      $(document).ready(function(){
+
+        $(document).on('change','.property_name',function(){
+
+          var property_id=$(this).val();
+
+          var div=$(this).parents();
+
+          var op= "";
+        
+        
+           $.ajax({
+            type:'get',
+            url:'{!!URL::to('findhouse_number')!!}',
+            data:{'id':property_id},
+            
+
+            success:function(data){
+             
+              op+='<option value ="0" selected disabled><Chose Property </option>';
+                 for(var i=0; i<data.length;i++){
+                op+='<option value="'+data[i].id+'">'+data[i].house_number+'</option>';
+                console.log(op);
+                 }
+
+              div.find('.house_number').html(" ");
+              div.find('.house_number').append(op);
+            },
+
+            error:function(){
+
+            }
+          });
+        });
+
+        $(document).on('change','.house_number',function(){
+          var monthly_rent=$(this).val();
+
+          var a=$(this).parents();
+
+          console.log(monthly_rent);
+
+          var op= "";
+          $.ajax({
+            
+            type:'get',
+            url:'{!!URL::to('findmonthly_rent')!!}',
+            data:{'id':monthly_rent},
+            dataType:'json',
+
+            success:function(data){
+
+              // console.log('Rent');
+              // console.log(data.monthly_rent);
+              a.find('.monthly_rent').val(data.monthly_rent);
+
+            },
+
+            error:function(){
+
+            }
+          });
+
+          
+        });
+      });
+
+    
+
+  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->

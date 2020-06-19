@@ -1,5 +1,5 @@
 
-@extends('admin.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
     <div class="container">
@@ -7,7 +7,7 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-3">
-                  <h1>Landlords Information And Actions</h1>
+                  <h1>Tenants Invoices</h1>
                 </div>
                 <div class="col-sm-9">
                   <ol class="breadcrumb float-sm-right">
@@ -32,37 +32,41 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>First Name</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th> Role</th>
+                  <th>House </th>
+                  <th>Tenant</th>
+                  <th>Rent</th>
+                  <th> Monthly  Bill</th>
+                  <th>Carry Forward </th>
+                  <th>Penalty</th>
+                  <th>Total Payments</th>
+                  <th> Paid In</th>
+                  <th>Balance</th>
+                  <th> Status</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
 
-                 @foreach ($admins  as $admins )
+                    
 
                    <tr>
-                   <td>{{$admins ->name}}</td>
-                   <td>{{$admins->username}}</td>
-                   <td>{{$admins->email}}</td>
-                   <td>{{$admins->role}}</td>
+                   
                   
                   <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
-                     
-                      <a href="{{ route('admin.edit',$admins['id'])}}" class="btn btn-info"><i class="fas fa-eye">Edit</i></a>
-                      {{-- <a href="{{action('admins.destroy', [$admins->id])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a> --}}
+                        <a href="{{URL::to('/generate-invoice')}}" class="btn btn-danger"><i class="fas fa-trash">Print</i></a>
+                      <a href="#" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a>
                     </div>
                   </td>
                 <tr>
 
-                  @endforeach
-
               </tbody>
+              
+             
             </table>
+           {{-- {{ $landlords->links() }} --}}
           </div>
+          
           <!-- /.card-body -->
         </div>
         <!-- /.card -->

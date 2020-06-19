@@ -1,143 +1,179 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Landlord;
-//use App\ManageLandlord;
+use Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use DB;
 
 class LandlordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $landlords =  Landlord::orderBy('id','DESC')->paginate(15);
-        return view('landlord.dashboard')->with('landlords',$landlords);
-    }
+    
+ public function add_landlord(){
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+     
+    return view('/landlord.add_landlord');
+ }
+
+
+ public function all_landlord(){
+
+    $landlords =DB::table('landlords')->get();
+    return view('/landlord.all_landlord',compact('landlords'));
+}
+
+
+public function save_landlord(Request $request ){
+
+    $data =array();
+
+      
+       
+       $data['firstname']=$request->firstname;
+       $data['lastname']=$request->lastname;
+       $data['username']=$request->username;
+       $data['passport']=$request->passport;
+       $data['email']=$request->email;
+       $data['phone_number']=$request->phone_number;
+       
+    //    $data['publication_status']=$request->publication_status;
+      
+       $image=$request->file('avatar');
+
+       if ($image) {
+
+           $image_name = str_random(20);
+           $ext=strtolower($image->getClientOriginalExtension());
+           $image_full_name=$image_name.'.'.$ext;
+           $upload_path='image_landlords/';
+           $image_url=$upload_path.$image_full_name;
+           $success=$image->move($upload_path,$image_full_name);
+           if ($success) {
+
+               $data['avatar'] = $image_url;
+               DB::table('landlords')->insert($data);
+            //    Session::put('message','Landlords added Successfully');
+
+               return Redirect::to('all-landlord');
+
+           }
+       }
+
+       $data['image']='';
+       DB::table('landlords')->insert($data);
+    //    Session::put('message', ' Landlords added successfully with out image');
+
+       return Redirect::to('all-landlord');
+}
+
+public function show_landlord($id){
+
+    $landlords =Landlord::find($id);
+      
+    return view('/landlord.show',compact('landlords','id'));
+}
+
+
+public function edit_landlord($id){
+    // $this->AdminAuthCheck();
+       $landlords=DB::table('landlords')
+              ->where('id',$id)
+              ->first();
+
+
+
+      return view('landlord.edit',compact('landlords'));
+      // return view('admin.all_category');
+   }
+   public function update_landlord(Request $request,$id){
+     
         
-        return view('landlord.create');
+    $data =array();
+       $data['firstname']=$request->firstname;
+       $data['lastname']=$request->lastname;
+       $data['username']=$request->username;
+       $data['passport']=$request->passport;
+       $data['email']=$request->email;
+       $data['phone_number']=$request->phone_number;
+    
+    DB::table('landlords')
+            ->where('id',$id)
+            ->update($data);
+
+            // Session::get('message','Category Updated Successfully');
+
+            return Redirect::to('all-landlord');
+       
+  
+}
+
+
+
+public function edit_profile($id)
+{
+    $landlords=DB::table('landlords')
+    ->where('id',$id)
+    ->first();   
+    return view('landlord.edit_profile',compact('landlords'));
+      
+   }
+
+
+   public function update_profile(Request $request,$id)
+   { 
+    $data =array();
+       $image=$request->file('avatar');
+
+    if ($image) {
+
+        $image_name = str_random(20);
+        $ext=strtolower($image->getClientOriginalExtension());
+        $image_full_name=$image_name.'.'.$ext;
+        $upload_path='image_landlords/';
+        $image_url=$upload_path.$image_full_name;
+        $success=$image->move($upload_path,$image_full_name);
+        if ($success) {
+
+            $data['avatar'] = $image_url;
+
+            DB::table('landlords')
+                ->where('id',$id)
+                ->update($data);
+          
+                return Redirect::to('all-landlord');
+
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request ->validate([
-            'firstname'=>'required',
-            'lastname'=>'required',
-            'username'=>'required',
-            'passport'=>'required',
-            'phone_number'=>'required',
-            'email'=>'required',
-            
-           
+    $data['image']='';
 
-
-        ]);
-        $landlord= new  Landlord();
-        $landlord->firstname= $request['firstname'];
-        $landlord->lastname= $request['lastname'];
-        $landlord->username= $request['username'];
-        $landlord->passport= $request['passport'];
-        $landlord->email= $request['email'];
-        $landlord->phone_number= $request['phone_number'];
+    DB::table('landlords')
+                ->where('id',$id)
+                ->update($data);
    
-    $landlord->save();
-    return redirect()->to('/landlord')-> with("Successfully created landlord");
- 
-    }
+                return Redirect::to('all-landlord');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Landlord  $landlord
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+   }
+
+
+
+
+public function delete_landlord($id){
+       
+   DB::table('landlords')
+        ->where('id',$id)
+        ->delete();
         
-        $landlords =Landlord::find($id);
-        return view ('landlord.show',compact('landlords','id'));
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Landlord  $landlord
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-        $landlords = Landlord::find($id);
+        // Session::get('message','Landlord Deleted Successfully');
 
-        return view ('landlord.edit',compact('landlords'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Landlord  $landlord
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request,  $id)
-    {
-        $request->validate([
-
-            'firstname'=>'required',
-            'lastname'=>'required',
-            'username'=>'required',
-            'passport'=>'required',
-            'phone_number'=>'required',
-            'email'=>'required',
-                      
-
-
-        ]);
-        $landlords= Landlord::find($id);
-        
-        
-        $landlords->firstname= $request->get('firstname');
-        $landlords->lastname= $request->get('lastname');
-        $landlords->username= $request->get('username');
-        $landlords->passport= $request->get('passport');
-        $landlords->email= $request->get('email');
-        $landlords->phone_number= $request->get('phone_number');
+        return Redirect::to('all-landlord');
+}
    
-    $landlords->save();
-    return redirect()->to('/landlord')-> with("Successfully created landlord");
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Landlord  $landlord
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Landlord $landlord)
-    {
-        
-        $deletelandlord = Landlord::find(input::get('id'));
 
-        $deletelandlord->delete();
 
-        return redirect('/landlord')->with('message','Successfully')->back();
-    }
 }

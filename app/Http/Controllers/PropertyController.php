@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Auth;
 use DB;
 use App\Property;
-use Illuminate\Http\Request;
+
 
 class PropertyController extends Controller
 {
@@ -16,7 +18,7 @@ class PropertyController extends Controller
     public function index()
     {
         //return view('property.dashboard');
-        $properties =  Property::orderBy('id')->paginate(10);
+        $properties =  Property::orderBy('property_id')->paginate(10);
         return view('property.dashboard')->with('properties',$properties);
     }
 
@@ -28,7 +30,7 @@ class PropertyController extends Controller
     public function create()
     {
         $apartments_type =DB::table('apartment_types')->select('id','apartments_type')->get();
-        $username =DB::table('landlords')->select('id','username')->get();
+        $username =DB::table('landlords')->select('landlord_id','username')->get();
         return view ('property.create',compact('apartments_type','username'));
     }
 
@@ -78,10 +80,10 @@ class PropertyController extends Controller
      * @param  \App\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($property_id)
     {
-        $property =Property::find($id);
-        return view ('property.show',compact('property','id'));
+        $property =Property::find($property_id);
+        return view ('property.show',compact('property','property_id'));
     }
 
     /**
@@ -90,13 +92,13 @@ class PropertyController extends Controller
      * @param  \App\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit( $property_id)
     {   
-        $property =Property::find($id);
+        $property =Property::find($property_id);
         $apartments_type =DB::table('apartment_types')->select('id','apartments_type')->get();
-        $username =DB::table('landlords')->select('id','username')->get();
+        $username =DB::table('landlords')->select('landlord_id','username')->get();
 
-        return view('property.edit',compact('property','id','apartments_type','username'));
+        return view('property.edit',compact('property','property_id','apartments_type','username'));
     }
 
     /**
@@ -106,7 +108,7 @@ class PropertyController extends Controller
      * @param  \App\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $property_id)
     {
         $this->validate($request,[
             'property_name'=>'required',
@@ -121,7 +123,7 @@ class PropertyController extends Controller
 
         ]);
 
-        $property  =Property::find($id);
+        $property  =Property::find($property_id);
        
         $property->property_name= $request->get('property_name');
         $property->apartments_type= $request->get('apartments_type');
@@ -145,9 +147,29 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
-        $property =Property::find($id);
+        $property =Property::find($property_id);
         $property->delete();
 
         return redirect()->route('property.index')->with('success','Property Deleted');
+    }
+    
+    public function apartment_type( )
+    {
+       
+        return Redirect::to ('apartments_type');
+        
+    }
+
+
+    public function create_apartments_type( Request $request ,$id)
+    {
+        $data =array();
+
+        $data=$request->get('apartments_type');
+ 
+        DB::table('apartment_types')->update($data);
+        
+ 
+        return Redirect::to('all-landlord');
     }
 }

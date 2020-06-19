@@ -1,5 +1,5 @@
 
-@extends('property.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
 <div class="container">
@@ -83,9 +83,23 @@
                             @enderror
                         </div>
                     </div>
+                  
+                    <div class="form-group row">
+                        <label for="house_status" class="col-md-4 col-form-label text-md-right">{{ __('House Status') }}</label>
+                        <div class="col-md-6">
+                          <input type=checkbox  class="input-xlarge" class="form-control @error('monthly_rent') is-invalid @enderror" name="house_status" value="0" required="">
+                          @error('house_status')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                        </div>
+                    
+                    </div>
 
                     
                       <div class="form-group row mb-0">
+                          
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">
                                   {{ __('Register') }}
@@ -98,4 +112,8 @@
       </div>
   </div>
 </div>
+<script type="text/javascript">
+
+
+</script>
   @endsection

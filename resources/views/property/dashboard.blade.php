@@ -1,4 +1,4 @@
-@extends('property.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
   <!-- /.content-header -->
@@ -42,6 +42,7 @@
             <tr>
               <th>Apartment Name</th>
               <th>Apartment Type</th>
+              <th>County</th>
               <th>Town</th>
               <th>Location</th>
               <th>Property Owner</th>
@@ -62,7 +63,7 @@
               <td>{{$value->username}}</td>
               <td class="text-right py-0 align-middle">
                 <div class="btn-group btn-group-sm">
-                  <a href="{{ route('property.show',$value['id'])}}" class="btn btn-info"> <i class="fas fa-eye">Details</i></a>
+                  <a href="{{ route('property.show',$value['property_id'])}}" class="btn btn-info"> <i class="fas fa-eye">Details</i></a>
 
                   {{-- <a href="{{ route('property.destroy',$value['id'])}}" class="btn btn-danger"><i class="fas fa-trash">Delete</i></a> --}}
                   

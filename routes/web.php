@@ -13,69 +13,79 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
-//  Auth::routes(['register'=>false]);
+// /  Auth::routes(['register'=>false]);
 
  Route::get('/home', 'HomeController@index')->name('home');
 
+         Route::resource('/dashboard','DashboardController')->name('*','dashboard');
 
-// Route::prefix('admin')->group(function (){
-
-//  Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
-// Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
-// Route::resource('/dashboard','DashboardController');
+         //admin 
+        
 
 
-// });
+        //manage landlords
+            //Route::resource('/landlord','LandlordController')->name('*','landlord');
+            Route::get('/all-landlord','LandlordController@all_landlord');
+            Route::get('/add-landlord','LandlordController@add_landlord');
+            Route::post('/save-landlord','LandlordController@save_landlord');
+            Route::get('/show-landlord/{id}','LandlordController@show_landlord');
+            Route::get('/edit-landlord/{id}', 'LandlordController@edit_landlord'); 
+            Route::post('/update-landlord/{id}','LandlordController@update_landlord'); 
+            Route::get('/delete-landlord/{id}','LandlordController@delete_landlord');
+          
+           Route::get('/delete_landlord/{id}','LandlordController@destroy');
+           Route::get('/edit-profile/{id}', 'LandlordController@edit_profile');    
+           Route::post('/update-profile/{id}','LandlordController@update_profile'); 
+          
+        
 
-
-//   Route::middleware(['auth'])->group(function(){
-      
-  //Dashboard Controller
- Route::resource('/dashboard','DashboardController');
-
-  //admin 
-  Route::resource('/admin','AdminController');
-
-
-
-  //manage landlords
-          Route::resource('/landlord','LandlordController') ;
-        //   Route::resource('/landlord/managelandlords','ManageLandlordController');
-      
-  
-       
-  
-  //manage Properties
+         //manage Properties
           Route::resource('/property','PropertyController');
          Route::resource('/property/addhouses','ManagePropertiesController');
+         Route::get('/apartments_type','PropertyController@apartment_type');
+         Route::post('/create-apartments_type/{id}','PropertyController@create_apartments_type');
   
-  //manage houses
+         //manage houses
           Route::resource('/houses','HousesController');
-          Route::resource('/houses/vacant','VacantController');
-          Route::resource('/houses/occupied','OccupiedController');
-  
-  
-  
-  //manage Tenants
+          Route::get('/all-houses','HousesController@index');
+         Route::get('/houses/vacant/index','VacantController@index');  
+          Route::get('/houses/occupied/index','OccupiedController@index');
+          Route::get('/unactive_house/{id}', 'HousesController@unactive_house');
+          Route::get('/active_house/{id}', 'HousesController@active_house'); 
+    
+            
+           
+         
+         
+    
+         //manage Tenants
   
           Route::resource('/tenant','TenantController');
-          Route::resource('tenant/assignhouses','ManageTenantController');
-          Route::get('/property_name/{id}','ManageTenantController@property_name')->name('property_name');
-  
-  
-          //Route::resource('/tenant/assignhouses','ManageTenantController');
-  
-  
-  //manage Accounts and Finance
-        //   Route::get('/accountsFinance','FinanceandAccountsController@index') ->name('dashboard');
+          Route::resource('/tenant/assignhouses','ManageTenantController');
+          Route::get('/findhouse_number','DatabaseQueryController@findhouse_number')->name('findhouse_number');
+          Route::get('/findmonthly_rent','DatabaseQueryController@findmonthly_rent')->name('findmonthly_rent');
+          
+
+
+          Route::resource('invoice','InvoiceController');
+          Route::get('/generate-invoice' ,'InvoiceController@generate_invoice');
+          Route::get('/print-invoice' ,'InvoiceController@print_invoice');
+          Route::get('/prepare-invoice' ,'InvoiceController@prepare_invoice');
+          
+
+
+          //Income route
+          Route::get('/company-income','IncomeController@index');
+          Route::get('/landlord-income','IncomeController@landlord_income');
 
 
 
+   
 
         
 //  });

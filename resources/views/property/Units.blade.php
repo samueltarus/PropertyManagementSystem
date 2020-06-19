@@ -1,4 +1,4 @@
-@extends('property.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
     <!-- /.content-header -->

@@ -1,5 +1,5 @@
 
-@extends('property.layouts')
+@extends('dashboard.layouts')
 
 @section('content')
 <div class="container">

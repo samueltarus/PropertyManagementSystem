@@ -16,8 +16,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins =  User::orderBy('id')->paginate(10);
-        return view('admin.index')->with('admins',$admins);
+        $admins =DB::table('users')->select(' name', 'username', 'email')->get();
+        // $admins =User::findOrFail($id)
+       
+        return view('admin.index',compact('admins'));
     }
 
     /**
@@ -27,8 +29,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $role =DB::table('roles')->select('id','role')->get();
-        return view ('admin.create',compact('role'));
+        
+        return view ('admin.create');
     }
 
     /**
@@ -40,27 +42,27 @@ class AdminController extends Controller
     public function store(Request $request)
     {
          
-        $request ->validate([
-            'name'=>'required',
-            'username'=>'required',
-            'email'=>'required',
-            'role'=>'required',
-            'password'=>'required',
+        // $request ->validate([
+        //     'name'=>'required',
+        //     'username'=>'required',
+        //     'email'=>'required',
+        //     'role'=>'required',
+        //     'password'=>'required',
 
 
 
-        ]);
+        // ]);
 
 
-            $admins = new  User();
-        $admins->name= $request['name'];
-        $admins->username= $request['username'];
-        $admins->email= $request['email'];
-        $admins->role= $request['role'];
-        $admins->password= $request['password'];
+        //     $admins = new  User();
+        // $admins->name= $request['name'];
+        // $admins->username= $request['username'];
+        // $admins->email= $request['email'];
+        // $admins->role= $request['role'];
+        // $admins->password= $request['password'];
        
-        $admins->save();
-        return redirect()->to('/admin')-> with('message','Successfully created Property');
+        // $admins->save();
+        // return redirect()->to('/admin')-> with('message','Successfully created Property');
     }
 
     /**
@@ -82,9 +84,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admins =User::findOrFail($id);
-        $role =DB::table('roles')->select('id','role')->get();
-        return view('admin.edit',compact('admins','id','role'));
+        // $admins =User::findOrFail($id);
+        // $role =DB::table('roles')->select('id','role')->get();
+        // return view('admin.edit',compact('admins','id','role'));
     }
 
     /**
@@ -97,26 +99,26 @@ class AdminController extends Controller
     public function update(Request $request,$id)
 
     {   
-        $this ->validate($request,[
-            'name'=>'required',
-            'username'=>'required',
-            'email'=>'required',
-            'role'=>'required',
-            'password'=>'required',
+        // $this ->validate($request,[
+        //     'name'=>'required',
+        //     'username'=>'required',
+        //     'email'=>'required',
+        //     'role'=>'required',
+        //     'password'=>'required',
 
 
 
-        ]);
-        $admins =User::findOrFail($id);
+        // ]);
+        // $admins =User::findOrFail($id);
 
-        $admins->name= $request->get('name');
-        $admins->username= $request->get('username');
-        $admins->email= $request->get('email');
-        $admins->role= $request->get('role');
-        $admins->password= $request->get('password'); 
+        // $admins->name= $request->get('name');
+        // $admins->username= $request->get('username');
+        // $admins->email= $request->get('email');
+        // $admins->role= $request->get('role');
+        // $admins->password= $request->get('password'); 
 
-        $admins->save();
-        return redirect()->to('/admin')-> with('message','Successfully created Property');
+        // $admins->save();
+        // return redirect()->to('/admin')-> with('message','Successfully created Property');
 
     }
 
